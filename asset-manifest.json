@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/multi-tenant-subscription-app/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/multi-tenant-subscription-app/static/js/main.857cc14d.chunk.js",
+    "main.js.map": "/multi-tenant-subscription-app/static/js/main.857cc14d.chunk.js.map",
+    "runtime-main.js": "/multi-tenant-subscription-app/static/js/runtime-main.3e35e87f.js",
+    "runtime-main.js.map": "/multi-tenant-subscription-app/static/js/runtime-main.3e35e87f.js.map",
+    "static/js/2.eab818c3.chunk.js": "/multi-tenant-subscription-app/static/js/2.eab818c3.chunk.js",
+    "static/js/2.eab818c3.chunk.js.map": "/multi-tenant-subscription-app/static/js/2.eab818c3.chunk.js.map",
+    "static/js/3.5b92ac12.chunk.js": "/multi-tenant-subscription-app/static/js/3.5b92ac12.chunk.js",
+    "static/js/3.5b92ac12.chunk.js.map": "/multi-tenant-subscription-app/static/js/3.5b92ac12.chunk.js.map",
+    "index.html": "/multi-tenant-subscription-app/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/multi-tenant-subscription-app/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.eab818c3.chunk.js.LICENSE.txt": "/multi-tenant-subscription-app/static/js/2.eab818c3.chunk.js.LICENSE.txt",
+    "static/media/logo.103b5fa1.svg": "/multi-tenant-subscription-app/static/media/logo.103b5fa1.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3e35e87f.js",
+    "static/js/2.eab818c3.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.857cc14d.chunk.js"
+  ]
+}
