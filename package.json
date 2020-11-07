@@ -37,5 +37,8 @@
       "last 1 safari version"
     ]
   },
-    "homepage": "https://TupchienkoOS.github.io/multi-tenant-subscription-app"
+  "homepage": "https://TupchienkoOS.github.io/multi-tenant-subscription-app",
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
+  }
 }
