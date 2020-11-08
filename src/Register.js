@@ -58,10 +58,9 @@ export const Register = () => {
             </a>
           </form>
           <p className="m-t">
-            {" "}
             <small>
               Inspinia we app framework base on Bootstrap 3 &copy; 2014
-            </small>{" "}
+            </small>
           </p>
         </div>
       </div>
