@@ -1,6 +1,13 @@
 import React from "react";
+import { InputField } from "./InputField";
 
-export const Register = () => {
+export const Register = ({
+  name,
+  email,
+  password,
+  termsNPolicy,
+  onChangeInput,
+}) => {
   return (
     <div className="gray-bg">
       <div className="middle-box text-center loginscreen   animated fadeInDown">
@@ -12,38 +19,50 @@ export const Register = () => {
           <p>Create account to see it in action.</p>
           <form className="m-t">
             {/*role="form" action="login.html" */}
-            <div className="form-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Name"
-                required=""
-              ></input>
-            </div>
-            <div className="form-group">
-              <input
-                type="email"
-                className="form-control"
-                placeholder="Email"
-                required=""
-              ></input>
-            </div>
-            <div className="form-group">
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Password"
-                required=""
-              ></input>
-            </div>
+            <InputField
+              id="Name"
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChangeInput={onChangeInput}
+            />
+            <InputField
+              id="Email"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChangeInput={onChangeInput}
+            />
+            <InputField
+              id="Password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChangeInput={onChangeInput}
+            />
             <div className="form-group">
               <div className="checkbox i-checks">
                 <label>
-                  <input type="checkbox"></input>
+                  <InputField
+                    type="checkbox"
+                    id="TermsNPolicy"
+                    value={termsNPolicy}
+                    onChangeInput={onChangeInput}
+                  />
+                  <i></i> Agree the terms and policy
+                </label>
+              </div>
+            </div>
+
+            <div className="form-group">
+              <div className="checkbox i-checks">
+                <label>
+                  <input type="checkbox" />
                   <i></i> Agree the terms and policy{" "}
                 </label>
               </div>
             </div>
+
             <button
               type="submit"
               className="btn btn-primary block full-width m-b"
