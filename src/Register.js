@@ -1,5 +1,6 @@
 import React from "react";
 import { InputField } from "./InputField";
+import { CheckBox } from "./CheckBox";
 
 export const Register = ({
   name,
@@ -40,28 +41,8 @@ export const Register = ({
               value={password}
               onChangeInput={onChangeInput}
             />
-            <div className="form-group">
-              <div className="checkbox i-checks">
-                <label>
-                  <InputField
-                    type="checkbox"
-                    id="TermsNPolicy"
-                    value={termsNPolicy}
-                    onChangeInput={onChangeInput}
-                  />
-                  <i></i> Agree the terms and policy
-                </label>
-              </div>
-            </div>
 
-            <div className="form-group">
-              <div className="checkbox i-checks">
-                <label>
-                  <input type="checkbox" />
-                  <i></i> Agree the terms and policy{" "}
-                </label>
-              </div>
-            </div>
+            <CheckBox />
 
             <button
               type="submit"

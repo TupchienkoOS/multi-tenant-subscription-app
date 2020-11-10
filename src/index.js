@@ -1,8 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./css/bootstrap.min.css";
-import "./css/bootstrap.css";
-import "./css/style.css";
+import "./font-awesome/css/font-awesome.css";
+import "./css/plugins/iCheck/custom.css";
+import "./css/animate.css";
+import "./App.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
