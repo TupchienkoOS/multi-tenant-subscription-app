@@ -7,7 +7,7 @@ export const InputField = ({
   name,
   placeholder,
   value,
-  onChange,
+  onChangeInput,
   error,
 }) => {
   return (
@@ -19,7 +19,7 @@ export const InputField = ({
         name={name}
         placeholder={placeholder}
         value={value}
-        onChange={onChange}
+        onChange={onChangeInput}
       />
     </div>
   );
