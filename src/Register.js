@@ -12,12 +12,19 @@ class Register extends React.Component {
         password: "",
         termsNPolicy: false,
       },
-      hover: false,
+      hover: { termsNPolicy: false },
     };
   }
 
-  onChangeInput = (event) => {
+  onMouseEnter = (event) => {
+    this.setState({ hover: { termsNPolicy: true } });
+  };
+  onMouseLeave = (event) => {
     debugger;
+    this.setState({ hover: { termsNPolicy: false } });
+  };
+
+  onChangeInput = (event) => {
     const { values } = this.state;
     const { name, value } = event.target;
     const updatedValues = { ...values };
@@ -35,6 +42,7 @@ class Register extends React.Component {
 
   render() {
     const { name, email, password, termsNPolicy } = this.state.values;
+
     return (
       <div className="gray-bg">
         <div className="middle-box text-center loginscreen   animated fadeInDown">
@@ -75,8 +83,10 @@ class Register extends React.Component {
                 name="termsNPolicy"
                 value={termsNPolicy}
                 label="Agree the terms and policy"
-                hover={this.state.hover}
+                hover={this.state.hover.termsNPolicy}
                 onchangeInput={this.onChangeInput}
+                onMouseEnter={this.onMouseEnter}
+                onMouseLeave={this.onMouseLeave}
               />
               <button
                 type="submit"

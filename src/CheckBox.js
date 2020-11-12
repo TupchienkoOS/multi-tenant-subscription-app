@@ -1,11 +1,16 @@
 import React from "react";
 import cx from "classnames";
 
-export const CheckBox = ({ id, value, hover, name, label, onchangeInput }) => {
-  function onHover(e) {
-    console.log("hover");
-  }
-
+export const CheckBox = ({
+  id,
+  value,
+  hover,
+  name,
+  label,
+  onchangeInput,
+  onMouseEnter,
+  onMouseLeave,
+}) => {
   return (
     <div className="form-group">
       <div className="checkbox i-checks">
@@ -27,7 +32,8 @@ export const CheckBox = ({ id, value, hover, name, label, onchangeInput }) => {
               name={name}
               style={{ position: "absolute", opacity: 0 }}
               onChange={onchangeInput}
-              onMouseEnter={onHover}
+              onMouseEnter={onMouseEnter}
+              onMouseLeave={onMouseLeave}
             />
           </div>
           <i></i> {label}
