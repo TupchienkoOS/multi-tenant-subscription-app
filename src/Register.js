@@ -1,11 +1,13 @@
 import React from "react";
 import { InputField } from "./InputField";
 import { CheckBox } from "./CheckBox";
+import { Button } from "./Button";
 
 class Register extends React.Component {
   constructor() {
     super();
     this.state = {
+      confirmed: false,
       values: {
         name: "",
         email: "",
@@ -15,6 +17,10 @@ class Register extends React.Component {
       hover: { termsNPolicy: false },
     };
   }
+
+  onSubmit = (event) => {
+    this.setState({ confirmed: true });
+  };
 
   onMouseEnter = (event) => {
     this.setState({ hover: { termsNPolicy: true } });
@@ -28,7 +34,6 @@ class Register extends React.Component {
     const { values } = this.state;
     const { name, value } = event.target;
     const updatedValues = { ...values };
-    debugger;
     if (event.target.name === "termsNPolicy") {
       this.setState({
         values: { ...updatedValues, [name]: !updatedValues.termsNPolicy },
@@ -88,12 +93,12 @@ class Register extends React.Component {
                 onMouseEnter={this.onMouseEnter}
                 onMouseLeave={this.onMouseLeave}
               />
-              <button
+              <Button
                 type="submit"
                 className="btn btn-primary block full-width m-b"
-              >
-                Register
-              </button>
+                label="Register"
+                onSubmit={this.onSubmit}
+              />
               <p className="text-muted text-center">
                 <small>Already have an account?</small>
               </p>
