@@ -1,7 +1,7 @@
 import React from "react";
 import cx from "classnames";
 
-export const CheckBox = ({ value, hover, name, onchangeInput }) => {
+export const CheckBox = ({ id, value, hover, name, label, onchangeInput }) => {
   function onHover(e) {
     console.log("hover");
   }
@@ -17,11 +17,12 @@ export const CheckBox = ({ value, hover, name, onchangeInput }) => {
           <div
             className={cx({
               "icheckbox_square-green hover": hover,
-              "icheckbox_square-green checked": value === "on",
-              "icheckbox_square-green": !value,
+              "icheckbox_square-green checked": value === true,
+              "icheckbox_square-green": value !== true,
             })}
           >
             <input
+              id={id}
               type="checkbox"
               name={name}
               style={{ position: "absolute", opacity: 0 }}
@@ -29,7 +30,7 @@ export const CheckBox = ({ value, hover, name, onchangeInput }) => {
               onMouseEnter={onHover}
             />
           </div>
-          <i></i> Agree the terms and policy
+          <i></i> {label}
         </label>
       </div>
     </div>

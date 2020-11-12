@@ -10,7 +10,7 @@ class Register extends React.Component {
         name: "",
         email: "",
         password: "",
-        termsNPolicy: "",
+        termsNPolicy: false,
       },
       hover: false,
     };
@@ -21,10 +21,16 @@ class Register extends React.Component {
     const { values } = this.state;
     const { name, value } = event.target;
     const updatedValues = { ...values };
-
-    this.setState({
-      values: { ...updatedValues, [name]: value },
-    });
+    debugger;
+    if (event.target.name === "termsNPolicy") {
+      this.setState({
+        values: { ...updatedValues, [name]: !updatedValues.termsNPolicy },
+      });
+    } else {
+      this.setState({
+        values: { ...updatedValues, [name]: value },
+      });
+    }
   };
 
   render() {
@@ -68,6 +74,7 @@ class Register extends React.Component {
                 id="TermsNPolicy"
                 name="termsNPolicy"
                 value={termsNPolicy}
+                label="Agree the terms and policy"
                 hover={this.state.hover}
                 onchangeInput={this.onChangeInput}
               />
