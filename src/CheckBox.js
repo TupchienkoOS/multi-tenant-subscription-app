@@ -7,7 +7,7 @@ export const CheckBox = ({
   hover,
   name,
   label,
-  onchangeInput,
+  onChangeInput,
   onMouseEnter,
   onMouseLeave,
 }) => {
@@ -23,7 +23,7 @@ export const CheckBox = ({
             className={cx({
               "icheckbox_square-green hover": hover,
               "icheckbox_square-green checked": value === true,
-              "icheckbox_square-green": value !== true,
+              "icheckbox_square-green": !value,
             })}
           >
             <input
@@ -31,7 +31,7 @@ export const CheckBox = ({
               type="checkbox"
               name={name}
               style={{ position: "absolute", opacity: 0 }}
-              onChange={onchangeInput}
+              onChange={onChangeInput}
               onMouseEnter={onMouseEnter}
               onMouseLeave={onMouseLeave}
             />
