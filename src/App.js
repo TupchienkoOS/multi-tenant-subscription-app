@@ -31,15 +31,12 @@ class App extends React.Component {
     const { values } = this.state;
     const { name, value } = event.target;
     const updatedValues = { ...values };
-    if (event.target.name === "termsNPolicy") {
-      this.setState({
-        values: { ...updatedValues, [name]: !updatedValues.termsNPolicy },
-      });
-    } else {
-      this.setState({
-        values: { ...updatedValues, [name]: value },
-      });
-    }
+    this.setState({
+      values: {
+        ...updatedValues,
+        [name]: name === "termsNPolicy" ? event.target.checked : value,
+      },
+    });
   };
 
   render() {
