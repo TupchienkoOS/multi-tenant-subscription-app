@@ -15,6 +15,7 @@ export const CheckBox = ({
     <div className="form-group">
       <div className="checkbox i-checks">
         <label
+          htmlFor={id}
           className={cx({
             hover: !hover,
           })}
