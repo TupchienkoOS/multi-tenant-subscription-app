@@ -23,7 +23,7 @@ export const CheckBox = ({
           <div
             className={cx({
               "icheckbox_square-green hover": hover,
-              "icheckbox_square-green checked": value === true,
+              "icheckbox_square-green checked": value,
               "icheckbox_square-green": !value,
             })}
           >
