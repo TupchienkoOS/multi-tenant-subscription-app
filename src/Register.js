@@ -85,7 +85,9 @@ class Register extends React.Component {
                 onMouseLeave={this.onMouseLeave}
               />
               <Button
-                type="button"
+                id={"register"}
+                name={"register"}
+                type="submit"
                 className="btn btn-primary block full-width m-b"
                 label="Register"
                 onSubmit={onSubmit}

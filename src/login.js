@@ -1,12 +1,29 @@
 import React from "react";
+import { InputField } from "./input-field";
+import { Button } from "./button";
 
 class Login extends React.Component {
-  constructor() {
-    super();
-    this.state = {};
+  constructor(props) {
+    super(props);
+    this.state = { values: { name: "", password: "" } };
   }
 
+  onChangeInput = (event) => {
+    debugger;
+    const { values } = this.state;
+    const { name, value } = event.target;
+    const updatedValues = { ...values };
+    this.setState({
+      values: {
+        ...updatedValues,
+        [name]: value,
+      },
+    });
+  };
+
   render() {
+    const { name, password } = this.state;
+    const { onSubmit } = this.props;
     return (
       <div className="gray-bg">
         <div className="middle-box text-center loginscreen animated fadeInDown">
@@ -21,29 +38,32 @@ class Login extends React.Component {
               {/* <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)--> */}
             </p>
             <p>Login in. To see it in action.</p>
-            <form className="m-t" role="form" action="index.html">
-              <div className="form-group">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Username"
-                  required=""
-                ></input>
-              </div>
-              <div className="form-group">
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Password"
-                  required=""
-                ></input>
-              </div>
-              <button
-                type="submit"
+            <form className="m-t">
+              {/* role="form" action="index.html" */}
+              <InputField
+                id="Name"
+                name="name"
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChangeInput={this.onChangeInput}
+              />
+              <InputField
+                id="Password"
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={password}
+                onChangeInput={this.onChangeInput}
+              />
+              <Button
+                id={"login"}
+                name={"login"}
+                type="button"
                 className="btn btn-primary block full-width m-b"
-              >
-                Login
-              </button>
+                label="Login"
+                onSubmit={onSubmit}
+              />
 
               <a href="#">
                 <small>Forgot password?</small>
