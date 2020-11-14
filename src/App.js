@@ -1,5 +1,6 @@
 import React from "react";
 import Register from "./register";
+import Login from "./login";
 
 class App extends React.Component {
   constructor() {
@@ -25,7 +26,11 @@ class App extends React.Component {
   //function register(){return true};
 
   render() {
-    return !this.state.confirmed && <Register onSubmit={this.onSubmit} />;
+    return this.state.confirmed ? (
+      <Login />
+    ) : (
+      <Register onSubmit={this.onSubmit} />
+    );
   }
 }
 
