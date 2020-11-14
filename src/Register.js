@@ -4,8 +4,8 @@ import { CheckBox } from "./check-box";
 import { Button } from "./button";
 
 class Register extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       values: {
         name: "",
@@ -16,10 +16,6 @@ class Register extends React.Component {
       hover: { termsNPolicy: false },
     };
   }
-
-  onSubmit = (event) => {
-    this.setState({ confirmed: true });
-  };
 
   onMouseEnter = (event) => {
     this.setState({ hover: { termsNPolicy: true } });
@@ -42,6 +38,7 @@ class Register extends React.Component {
 
   render() {
     const { name, email, password, termsNPolicy } = this.state.values;
+    const { onSubmit } = this.props;
     return (
       <div className="gray-bg">
         <div className="middle-box text-center loginscreen   animated fadeInDown">
@@ -88,10 +85,10 @@ class Register extends React.Component {
                 onMouseLeave={this.onMouseLeave}
               />
               <Button
-                type="submit"
+                type="button"
                 className="btn btn-primary block full-width m-b"
                 label="Register"
-                onSubmit={this.onSubmit}
+                onSubmit={onSubmit}
               />
               <p className="text-muted text-center">
                 <small>Already have an account?</small>
