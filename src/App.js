@@ -1,5 +1,5 @@
 import React from "react";
-import Register from "./Register";
+import Register from "./register";
 
 class App extends React.Component {
   constructor() {

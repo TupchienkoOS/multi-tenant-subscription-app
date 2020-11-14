@@ -1,7 +1,7 @@
 import React from "react";
-import { InputField } from "./InputField";
-import { CheckBox } from "./CheckBox";
-import { Button } from "./Button";
+import { InputField } from "./input-field";
+import { CheckBox } from "./check-box";
+import { Button } from "./button";
 
 export const Register = ({
   confirmed,
