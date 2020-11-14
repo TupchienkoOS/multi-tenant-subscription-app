@@ -12,12 +12,12 @@ class Profile extends React.Component {
   }
 
   render() {
+    const { onLogOut } = this.props;
     return (
       <div id="wrapper">
         <NavBarSide />
-
         <div id="page-wrapper" className="gray-bg">
-          <NavBarTop />
+          <NavBarTop onLogOut={onLogOut} />
           <PageHeading />
           <PageContent />
           <PageFooter />

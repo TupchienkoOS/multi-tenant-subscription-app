@@ -4,7 +4,7 @@ export const PageContent = () => {
   return (
     <div className="wrapper wrapper-content">
       <div className="row animated fadeInRight">
-        <div className="col-md-4">
+        {/* <div className="col-md-4">
           <div className="ibox ">
             <div className="ibox-title">
               <h5>Profile Detail</h5>
@@ -318,7 +318,7 @@ export const PageContent = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

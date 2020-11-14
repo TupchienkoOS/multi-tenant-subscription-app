@@ -1,6 +1,6 @@
 import React from "react";
 
-export const NavBarTop = () => {
+export const NavBarTop = ({ onLogOut }) => {
   return (
     <div className="row border-bottom">
       <nav className="navbar navbar-static-top" role="navigation">
@@ -170,7 +170,7 @@ export const NavBarTop = () => {
           </li>
 
           <li>
-            <a href="login.html">
+            <a href="#" onClick={onLogOut}>
               <i className="fa fa-sign-out"></i> Log out
             </a>
           </li>

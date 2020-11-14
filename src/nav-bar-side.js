@@ -1,4 +1,5 @@
 import React from "react";
+import AvatarSmall from "./img/profile_small.jpg";
 
 export const NavBarSide = () => {
   return (
@@ -8,9 +9,9 @@ export const NavBarSide = () => {
           <li className="nav-header">
             <div className="dropdown profile-element">
               <img
-                alt="image"
+                alt="profile-icon"
                 className="rounded-circle"
-                src="./img/profile_small.jpg"
+                src={AvatarSmall}
               />
               <a data-toggle="dropdown" className="dropdown-toggle" href="#">
                 <span className="block m-t-xs font-bold">David Williams</span>

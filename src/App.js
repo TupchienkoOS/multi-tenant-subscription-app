@@ -13,6 +13,12 @@ class App extends React.Component {
     };
   }
 
+  onLogOut = (event) => {
+    debugger;
+    event.preventDefault();
+    this.setState({ login: false });
+  };
+
   onSubmit = (event) => {
     const eventName = event.target.name;
     this.setState({ [eventName]: true });
@@ -32,7 +38,7 @@ class App extends React.Component {
   render() {
     const { register, login } = this.state;
     return login ? (
-      <Profile />
+      <Profile onLogOut={this.onLogOut} />
     ) : register ? (
       <Login onSubmit={this.onSubmit} />
     ) : (
