@@ -7,8 +7,8 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      register: false,
-      login: false,
+      register: true,
+      login: true,
       err: {},
     };
   }
