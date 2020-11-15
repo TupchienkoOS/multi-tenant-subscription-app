@@ -1,5 +1,5 @@
 import React from "react";
-import AvatarSmall from "./img/profile_small.jpg";
+import AvatarSmall from "../img/profile_small.jpg";
 
 export const NavBarSide = () => {
   return (
