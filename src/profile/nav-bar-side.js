@@ -1,7 +1,7 @@
 import React from "react";
-import AvatarSmall from "../img/profile_small.jpg";
 
-export const NavBarSide = () => {
+export const NavBarSide = ({ user }) => {
+  const { firstName, lastName, avatar_small, role } = user;
   return (
     <nav className="navbar-default navbar-static-side" role="navigation">
       <div className="sidebar-collapse">
@@ -11,12 +11,15 @@ export const NavBarSide = () => {
               <img
                 alt="profile-icon"
                 className="rounded-circle"
-                src={AvatarSmall}
+                src={avatar_small}
               />
               <a data-toggle="dropdown" className="dropdown-toggle" href="#">
-                <span className="block m-t-xs font-bold">David Williams</span>
+                <span className="block m-t-xs font-bold">
+                  {firstName + " " + lastName}
+                </span>
                 <span className="text-muted text-xs block">
-                  Art Director <b className="caret"></b>
+                  {role}
+                  <b className="caret"></b>
                 </span>
               </a>
               <ul className="dropdown-menu animated fadeInRight m-t-xs">

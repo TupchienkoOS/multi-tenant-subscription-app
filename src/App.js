@@ -7,9 +7,10 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      register: false,
-      login: false,
+      register: true,
+      login: true,
       err: {},
+      usrId: 1,
     };
   }
 
@@ -40,13 +41,13 @@ class App extends React.Component {
   //Function login(){}
 
   render() {
-    const { register, login } = this.state;
+    const { register, login, usrId } = this.state;
     return !register && !login ? (
       <Register onSubmit={this.onSubmit} onLogin={this.onLogOut} />
     ) : register && !login ? (
       <Login onSubmit={this.onSubmit} onRegistr={this.onRegistr} />
     ) : (
-      <Profile onLogOut={this.onLogOut} />
+      <Profile onLogOut={this.onLogOut} usrId={usrId} />
     );
   }
 }
