@@ -17,11 +17,10 @@ class Profile extends React.Component {
         role: "",
         messages: [],
         notifications: [],
-        avatar_small: "",
+        avatarSmall: "",
       },
     };
   }
-
   componentDidMount() {
     this.fetchData();
   }
@@ -34,12 +33,23 @@ class Profile extends React.Component {
 
   render() {
     const { onLogOut } = this.props;
-    const { firstName, lastName, avatar_small, role } = this.state.user;
+    const {
+      firstName,
+      lastName,
+      avatarSmall,
+      role,
+      notifications,
+      messages,
+    } = this.state.user;
     return (
       <div id="wrapper">
         <NavBarSide user={this.state.user} />
         <div id="page-wrapper" className="gray-bg">
-          <NavBarTop onLogOut={onLogOut} />
+          <NavBarTop
+            onLogOut={onLogOut}
+            notifications={notifications}
+            messages={messages}
+          />
           <PageHeading />
           <PageContent />
           <PageFooter />

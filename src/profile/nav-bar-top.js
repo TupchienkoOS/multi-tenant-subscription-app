@@ -1,6 +1,24 @@
 import React from "react";
 
-export const NavBarTop = ({ onLogOut }) => {
+export const NavBarTop = ({ onLogOut, notifications, messages }) => {
+  const getNumberMessages = () => {
+    const msgCnt = Object.keys(messages).length;
+    return msgCnt !== 0 ? (
+      <div>
+        <span className="label label-primary">{msgCnt}</span>
+      </div>
+    ) : null;
+  };
+
+  const getNumberNotifications = () => {
+    const notifCnt = Object.keys(notifications).length;
+    return notifCnt !== 0 ? (
+      <div>
+        <span className="label label-primary">{notifCnt}</span>
+      </div>
+    ) : null;
+  };
+
   return (
     <div className="row border-bottom">
       <nav className="navbar navbar-static-top" role="navigation">
@@ -40,8 +58,7 @@ export const NavBarTop = ({ onLogOut }) => {
               data-toggle="dropdown"
               href="#"
             >
-              <i className="fa fa-envelope"></i>{" "}
-              <span className="label label-warning">16</span>
+              <i className="fa fa-envelope"></i> {getNumberMessages()}
             </a>
             <ul className="dropdown-menu dropdown-messages">
               <li>
@@ -121,7 +138,9 @@ export const NavBarTop = ({ onLogOut }) => {
               href="#"
             >
               <i className="fa fa-bell"></i>{" "}
-              <span className="label label-primary">8</span>
+              {/* <span className="label label-primary"> */}
+              {getNumberNotifications()}
+              {/* </span> */}
             </a>
             <ul className="dropdown-menu dropdown-alerts">
               <li>
