@@ -39,7 +39,7 @@ class Register extends React.Component {
 
   render() {
     const { name, email, password, termsNPolicy } = this.state.values;
-    const { onSubmit } = this.props;
+    const { onSubmit, onLogin } = this.props;
     return (
       <div className="gray-bg">
         <div className="middle-box text-center loginscreen   animated fadeInDown">
@@ -96,7 +96,12 @@ class Register extends React.Component {
               <p className="text-muted text-center">
                 <small>Already have an account?</small>
               </p>
-              <a className="btn btn-sm btn-white btn-block" href="login.html">
+              <a
+                className="btn btn-sm btn-white btn-block"
+                href="login.html"
+                onClick={onLogin}
+              >
+                {" "}
                 Login
               </a>
             </form>

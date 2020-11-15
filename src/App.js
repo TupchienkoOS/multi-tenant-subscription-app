@@ -7,16 +7,20 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      register: true,
-      login: true,
+      register: false,
+      login: false,
       err: {},
     };
   }
 
   onLogOut = (event) => {
-    debugger;
     event.preventDefault();
-    this.setState({ login: false });
+    this.setState({ login: false, register: true });
+  };
+
+  onRegistr = (event) => {
+    event.preventDefault();
+    this.setState({ register: false });
   };
 
   onSubmit = (event) => {
@@ -37,12 +41,12 @@ class App extends React.Component {
 
   render() {
     const { register, login } = this.state;
-    return login ? (
-      <Profile onLogOut={this.onLogOut} />
-    ) : register ? (
-      <Login onSubmit={this.onSubmit} />
+    return !register && !login ? (
+      <Register onSubmit={this.onSubmit} onLogin={this.onLogOut} />
+    ) : register && !login ? (
+      <Login onSubmit={this.onSubmit} onRegistr={this.onRegistr} />
     ) : (
-      <Register onSubmit={this.onSubmit} />
+      <Profile onLogOut={this.onLogOut} />
     );
   }
 }

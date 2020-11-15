@@ -23,7 +23,7 @@ class Login extends React.Component {
 
   render() {
     const { name, password } = this.state;
-    const { onSubmit } = this.props;
+    const { onSubmit, onRegistr } = this.props;
     return (
       <div className="gray-bg">
         <div className="middle-box text-center loginscreen animated fadeInDown">
@@ -72,6 +72,7 @@ class Login extends React.Component {
                 <small>Do not have an account?</small>
               </p>
               <a
+                onClick={onRegistr}
                 className="btn btn-sm btn-white btn-block"
                 href="register.html"
               >
