@@ -21,18 +21,20 @@ class Profile extends React.Component {
       },
     };
   }
+
   componentDidMount() {
     this.fetchData();
   }
 
   fetchData() {
-    const currentUser = users.filter((user) => (user.id = this.props.usrId))[0];
+    const currentUser = users.filter((user) => (user.id = 1))[0];
     console.log(currentUser);
     this.setState({ user: currentUser });
   }
+  onLogOut = () => {};
 
   render() {
-    const { onLogOut } = this.props;
+    const { onLogOut } = this; //.props;
     const {
       firstName,
       lastName,

@@ -8,6 +8,9 @@ class Login extends React.Component {
     this.state = { values: { name: "", password: "" } };
   }
 
+  onSubmit = () => {};
+  onRegistr = () => {};
+
   onChangeInput = (event) => {
     debugger;
     const { values } = this.state;
@@ -23,7 +26,7 @@ class Login extends React.Component {
 
   render() {
     const { name, password } = this.state;
-    const { onSubmit, onRegistr } = this.props;
+    const { onSubmit, onRegistr } = this; //.props;
     return (
       <div className="gray-bg">
         <div className="middle-box text-center loginscreen animated fadeInDown">
