@@ -3,7 +3,6 @@ import Register from "./register";
 import Login from "./login";
 import Profile from "./profile";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import test from "./test";
 
 class App extends React.Component {
   constructor() {
@@ -39,35 +38,15 @@ class App extends React.Component {
     event.preventDefault();
   };
 
-  Child = () => {
-    // We can use the `useParams` hook here to access
-    // the dynamic pieces of the URL.
-
-    return (
-      <div>
-        <h3>ID: </h3>
-      </div>
-    );
-  };
-
-  //function register(){return true};
-  //Function login(){}
-
   render() {
     const { register, login, usrId } = this.state;
     return (
       <Router>
-        {/* !register && !login ? (
-        <Register onSubmit={this.onSubmit} onLogin={this.onLogOut} />
-        ) : register && !login ? (
-        <Login onSubmit={this.onSubmit} onRegistr={this.onRegistr} />
-        ) : (
-        <Profile onLogOut={this.onLogOut} usrId={usrId} />
-        ); */}
         <div>
-          <Route exact={true} path="/login" component={Login} />
-          <Route exact={true} path="/register" component={Register} />
-          <Route exact={true} path="/profile" component={Profile} />
+          <Route exact={true} path="/" component={Login} />
+          <Route path="register" component={Register} />
+          <Route path="profile" component={Profile} />
+          {/* <Route  path="/login" component={Login} /> */}
         </div>
       </Router>
     );
@@ -75,3 +54,13 @@ class App extends React.Component {
 }
 
 export default App;
+
+//  !register && !login ? (
+//       <Register onSubmit={this.onSubmit} onLogin={this.onLogOut} />
+//       ) : register && !login ? (
+//       <Login onSubmit={this.onSubmit} onRegistr={this.onRegistr} />
+//       ) : (
+//       <Profile onLogOut={this.onLogOut} usrId={usrId} />
+//       );
+//function register(){return true};
+//Function login(){}
