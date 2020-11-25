@@ -2,6 +2,7 @@ import React from "react";
 import Register from "./register";
 import Login from "./login";
 import Profile from "./profile";
+import test from "./test";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 class App extends React.Component {
@@ -41,11 +42,15 @@ class App extends React.Component {
   render() {
     const { register, login, usrId } = this.state;
     return (
+      //<Login />
+      //<Register />
+      //<Profile />
       <Router>
         <div>
-          <Route exact={true} path="/" component={Login} />
-          <Route path="register" component={Register} />
-          <Route path="profile" component={Profile} />
+          <Route exact path="/" component={test} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/profile" component={Profile} />
           {/* <Route  path="/login" component={Login} /> */}
         </div>
       </Router>
