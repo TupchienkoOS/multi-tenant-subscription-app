@@ -1,7 +1,7 @@
 import React from "react";
 import { InputField } from "./input-field";
 import { CheckBox } from "./check-box";
-import { Button } from "./button";
+import { Button } from "./Button";
 
 class Register extends React.Component {
   constructor(props) {
@@ -11,9 +11,9 @@ class Register extends React.Component {
         name: "",
         email: "",
         password: "",
-        termsNPolicy: false,
+        termsNPolicy: false
       },
-      hover: { termsNPolicy: false },
+      hover: { termsNPolicy: false }
     };
   }
 
@@ -32,8 +32,8 @@ class Register extends React.Component {
     this.setState({
       values: {
         ...updatedValues,
-        [name]: inputVal,
-      },
+        [name]: inputVal
+      }
     });
   };
 

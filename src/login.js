@@ -1,6 +1,6 @@
 import React from "react";
 import { InputField } from "./input-field";
-import { Button } from "./button";
+import { Button } from "./Button";
 
 class Login extends React.Component {
   constructor(props) {
@@ -19,8 +19,8 @@ class Login extends React.Component {
     this.setState({
       values: {
         ...updatedValues,
-        [name]: value,
-      },
+        [name]: value
+      }
     });
   };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Register from "./register";
+import Register from "./Register";
 import Login from "./login";
 import Profile from "./profile";
 import test from "./test";
@@ -13,7 +13,7 @@ class App extends React.Component {
       register: true,
       login: true,
       err: {},
-      usrId: 1,
+      usrId: 1
     };
   }
 
@@ -51,6 +51,7 @@ class App extends React.Component {
           <Route exact path="/" component={Login} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/profile" component={Profile} />
           {/* 
            <Route exact path="/test" component={test} />
           <Route exact path="/test1" component={test1} />
