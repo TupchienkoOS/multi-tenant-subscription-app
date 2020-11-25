@@ -1,7 +1,9 @@
 import React from "react";
+//import avatarSmall from "../img/profile_small.jpg";
 
 export const NavBarSide = ({ user }) => {
-  const { firstName, lastName, avatar_small, role } = user;
+  const { firstName, lastName, role, avatarSmall } = user;
+
   return (
     <nav className="navbar-default navbar-static-side" role="navigation">
       <div className="sidebar-collapse">
@@ -11,7 +13,7 @@ export const NavBarSide = ({ user }) => {
               <img
                 alt="profile-icon"
                 className="rounded-circle"
-                src={avatar_small}
+                src={avatarSmall}
               />
               <a data-toggle="dropdown" className="dropdown-toggle" href="#">
                 <span className="block m-t-xs font-bold">
@@ -48,7 +50,7 @@ export const NavBarSide = ({ user }) => {
             </div>
             <div className="logo-element">IN+</div>
           </li>
-          <li>
+          {/* <li>
             <a href="index.html">
               <i className="fa fa-th-large"></i>{" "}
               <span className="nav-label">Dashboards</span>{" "}
@@ -543,7 +545,7 @@ export const NavBarSide = ({ user }) => {
               <i className="fa fa-database"></i>{" "}
               <span className="nav-label">Package</span>
             </a>
-          </li>
+          </li> */}
         </ul>
       </div>
     </nav>

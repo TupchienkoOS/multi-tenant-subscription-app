@@ -3,6 +3,7 @@ import Register from "./register";
 import Login from "./login";
 import Profile from "./profile";
 import test from "./test";
+import test1 from "./test1";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 class App extends React.Component {
@@ -47,10 +48,16 @@ class App extends React.Component {
       //<Profile />
       <Router>
         <div>
+          <Route exact path="/" component={Login} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          {/* 
+           <Route exact path="/test" component={test} />
+          <Route exact path="/test1" component={test1} />
           <Route exact path="/" component={test} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/profile" component={Profile} /> */}
           {/* <Route  path="/login" component={Login} /> */}
         </div>
       </Router>

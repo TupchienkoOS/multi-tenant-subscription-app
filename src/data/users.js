@@ -25,6 +25,6 @@ export const users = [
       },
     ],
     avatarSmall:
-      "http://localhost:3000/multi-tenant-subscription-app/src/img/profile_small.jpg",
+      "D:/DEV/multi-tenant-subscription-app/src/img/profile_small.jpg",
   },
 ];
