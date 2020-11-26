@@ -1,5 +1,5 @@
 import React from "react";
-import Register from "./Register";
+import Register from "./register";
 import Login from "./login";
 import Profile from "./profile";
 import test from "./test";
@@ -13,7 +13,7 @@ class App extends React.Component {
       register: true,
       login: true,
       err: {},
-      usrId: 1
+      usrId: 1,
     };
   }
 
