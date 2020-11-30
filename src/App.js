@@ -43,25 +43,12 @@ class App extends React.Component {
   render() {
     const { register, login, usrId } = this.state;
     return (
-      <Router>
+      <Router basename="/multi-tenant-subscription-app">
         <div>
-          <Route
-            exact
-            path="/multi-tenant-subscription-app/"
-            component={Login}
-          />
-          <Route
-            path="/multi-tenant-subscription-app/login"
-            component={Login}
-          />
-          <Route
-            path="/multi-tenant-subscription-app/register"
-            component={Register}
-          />
-          <Route
-            path="/multi-tenant-subscription-app/profile"
-            component={Profile}
-          />
+          <Route exact path="/" component={Login} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/profile" component={Profile} />
         </div>
       </Router>
     );
