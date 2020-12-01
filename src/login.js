@@ -1,11 +1,16 @@
 import React from "react";
 import { InputField } from "./input-field";
 import { Button } from "./button";
+import { Link } from "react-router-dom";
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = { values: { name: "", password: "" } };
+  }
+
+  componentDidMount() {
+    document.body.className = "gray-bg";
   }
 
   onSubmit = () => {};
@@ -28,7 +33,7 @@ class Login extends React.Component {
     const { name, password } = this.state;
     const { onSubmit, onRegistr } = this; //.props;
     return (
-      <div className="gray-bg">
+      <div>
         <div className="middle-box text-center loginscreen animated fadeInDown">
           <div>
             <div>
@@ -74,13 +79,9 @@ class Login extends React.Component {
               <p className="text-muted text-center">
                 <small>Do not have an account?</small>
               </p>
-              <a
-                onClick={onRegistr}
-                className="btn btn-sm btn-white btn-block"
-                href="register.html"
-              >
-                Create an account
-              </a>
+              <span className="btn btn-sm btn-white btn-block">
+                <Link to={"/register"}>Create an account</Link>
+              </span>
             </form>
             <p className="m-t">
               {" "}

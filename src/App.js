@@ -2,14 +2,14 @@ import React from "react";
 import Register from "./register";
 import Login from "./login";
 import Profile from "./profile";
-import test from "./test";
-import test1 from "./test1";
+import PrivateRoute from "./private-route";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      user: false,
       register: true,
       login: true,
       err: {},
@@ -41,14 +41,18 @@ class App extends React.Component {
   };
 
   render() {
-    const { register, login, usrId } = this.state;
+    const { register, login, usrId, user } = this.state;
     return (
       <Router basename="/multi-tenant-subscription-app">
         <div>
-          <Route exact path="/" component={Login} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/profile" component={Profile} />
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <PrivateRoute path="/profile" user={user}>
+              <Profile />
+            </PrivateRoute>
+          </Switch>
         </div>
       </Router>
     );
@@ -56,13 +60,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-//  !register && !login ? (
-//       <Register onSubmit={this.onSubmit} onLogin={this.onLogOut} />
-//       ) : register && !login ? (
-//       <Login onSubmit={this.onSubmit} onRegistr={this.onRegistr} />
-//       ) : (
-//       <Profile onLogOut={this.onLogOut} usrId={usrId} />
-//       );
-//function register(){return true};
-//Function login(){}

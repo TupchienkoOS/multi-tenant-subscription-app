@@ -2,6 +2,7 @@ import React from "react";
 import { InputField } from "./input-field";
 import { CheckBox } from "./check-box";
 import { Button } from "./button";
+import { Link } from "react-router-dom";
 
 class Register extends React.Component {
   constructor(props) {
@@ -15,6 +16,10 @@ class Register extends React.Component {
       },
       hover: { termsNPolicy: false },
     };
+  }
+
+  componentDidMount() {
+    document.body.className = "gray-bg";
   }
 
   onMouseEnter = (event) => {
@@ -44,7 +49,7 @@ class Register extends React.Component {
     const { name, email, password, termsNPolicy } = this.state.values;
     const { onSubmit, onLogin } = this; //.props;
     return (
-      <div className="gray-bg">
+      <div>
         <div className="middle-box text-center loginscreen   animated fadeInDown">
           <div>
             <div>
@@ -99,14 +104,9 @@ class Register extends React.Component {
               <p className="text-muted text-center">
                 <small>Already have an account?</small>
               </p>
-              <a
-                className="btn btn-sm btn-white btn-block"
-                href="login.html"
-                onClick={onLogin}
-              >
-                {" "}
-                Login
-              </a>
+              <span className="btn btn-sm btn-white btn-block">
+                <Link to={"/login"}>Login</Link>
+              </span>
             </form>
             <p className="m-t">
               <small>
