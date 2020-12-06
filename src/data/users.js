@@ -4,6 +4,7 @@ export const users = [
     firstName: "David",
     lastName: "Williams",
     role: "Art Director",
+    login: "test@.com.ua",
     messages: [],
     notifications: [
       {

@@ -13,9 +13,6 @@ class Login extends React.Component {
     document.body.className = "gray-bg";
   }
 
-  onSubmit = () => {};
-  onRegistr = () => {};
-
   onChangeInput = (event) => {
     debugger;
     const { values } = this.state;
@@ -30,8 +27,8 @@ class Login extends React.Component {
   };
 
   render() {
-    const { name, password } = this.state;
-    const { onSubmit, onRegistr } = this; //.props;
+    const { login, password } = this.state.values;
+    const { onLogin } = this.props;
     return (
       <div>
         <div className="middle-box text-center loginscreen animated fadeInDown">
@@ -53,7 +50,7 @@ class Login extends React.Component {
                 name="name"
                 type="text"
                 placeholder="Name"
-                value={name}
+                value={login}
                 onChangeInput={this.onChangeInput}
               />
               <InputField
@@ -67,10 +64,12 @@ class Login extends React.Component {
               <Button
                 id={"login"}
                 name={"login"}
-                type="button"
+                type={"button"}
                 className="btn btn-primary block full-width m-b"
                 label="Login"
-                onSubmit={onSubmit}
+                onClick={() => {
+                  onLogin(this.state.values);
+                }}
               />
 
               <a href="#">

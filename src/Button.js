@@ -1,13 +1,13 @@
 import React from "react";
 
-export const Button = ({ id, name, type, label, className, onSubmit }) => {
+export const Button = ({ id, name, type, label, className, onClick }) => {
   return (
     <button
       id={id}
       name={name}
       type={type}
       className={className}
-      onClick={onSubmit}
+      onClick={onClick}
     >
       {label}
     </button>
