@@ -189,7 +189,7 @@ export const NavBarTop = ({ onLogOut, notifications, messages }) => {
           </li>
 
           <li>
-            <a href="#" onClick={onLogOut}>
+            <a onClick={() => onLogOut()}>
               <i className="fa fa-sign-out"></i> Log out
             </a>
           </li>

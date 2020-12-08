@@ -1,13 +1,14 @@
 import React from "react";
 import { Profile } from "./profile";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export const NotLoginnedRoute = (props) => {
   return (
     <Route
       render={() =>
-        props.user ? (
-          <Profile onLogOut={props.onLogOut} user={props.user} />
+        Cookies.get("usrId") ? (
+          <Redirect to={{ pathname: "/profile" }} />
         ) : (
           props.children
         )

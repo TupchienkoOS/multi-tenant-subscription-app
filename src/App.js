@@ -2,6 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Redirect } from "react-router-dom";
 import { Routes } from "./routes";
 import { users } from "./data/users";
+import Cookies from "js-cookie";
+
+export const AppContext = React.createContext();
 
 class App extends React.Component {
   constructor() {
@@ -17,8 +20,9 @@ class App extends React.Component {
   componentDidMount() {}
 
   onLogOut = (event) => {
-    event.preventDefault();
-    this.setState({ login: false, register: true });
+    // event.preventDefault();
+    this.setState({ user: false });
+    Cookies.remove("usrId");
   };
 
   onRegistr = (event) => {
@@ -31,6 +35,8 @@ class App extends React.Component {
       return user.login === loginUser.name;
     })[0];
     this.setState({ user: currentUser });
+
+    Cookies.set("usrId", currentUser.id);
   };
 
   onSubmit = (event) => {
@@ -46,26 +52,21 @@ class App extends React.Component {
     event.preventDefault();
   };
 
-  isLoginnedUser = () =>
-    this.state.user ? (
-      <Redirect to={{ pathname: `/profile/${this.state.user.id}` }} />
-    ) : (
-      <Redirect to={{ pathname: `/login` }} />
-    );
-
   render() {
     const { user } = this.state;
     return (
-      <Router basename="/multi-tenant-subscription-app">
-        <div>
-          <Routes
-            user={user}
-            onLogin={this.onLogin}
-            isLoginnedUser={this.isLoginnedUser}
-            onLogOut={this.onLogOut}
-          />
-        </div>
-      </Router>
+      <AppContext.Provider value={this.onLogOut}>
+        <Router basename="/multi-tenant-subscription-app">
+          <div>
+            <Routes
+              user={user}
+              onLogin={this.onLogin}
+              isLoginnedUser={this.isLoginnedUser}
+              onLogOut={this.onLogOut}
+            />
+          </div>
+        </Router>
+      </AppContext.Provider>
     );
   }
 }
