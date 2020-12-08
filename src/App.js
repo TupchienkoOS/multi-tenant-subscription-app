@@ -1,18 +1,7 @@
 import React from "react";
-import Register from "./register";
-import Login from "./login";
-import { Profile } from "./profile";
-import PrivateRoute from "./private-route";
+import { BrowserRouter as Router, Redirect } from "react-router-dom";
+import { Routes } from "./routes";
 import { users } from "./data/users";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-  Link,
-  IndexRoute,
-  useRouteHistory,
-} from "react-router-dom";
 
 class App extends React.Component {
   constructor() {
@@ -25,9 +14,7 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
-    console.log(this.props);
-  }
+  componentDidMount() {}
 
   onLogOut = (event) => {
     event.preventDefault();
@@ -43,8 +30,6 @@ class App extends React.Component {
     const currentUser = users.filter((user) => {
       return user.login === loginUser.name;
     })[0];
-    debugger;
-    console.log("logined", currentUser);
     this.setState({ user: currentUser });
   };
 
@@ -69,27 +54,16 @@ class App extends React.Component {
     );
 
   render() {
-    const { register, login, usrId, user } = this.state;
+    const { user } = this.state;
     return (
       <Router basename="/multi-tenant-subscription-app">
         <div>
-          <Switch>
-            <Route exact path="/" component={Login} />
-            <Route path="/login">
-              {this.state.user ? (
-                <Redirect to={{ pathname: `/profile/${this.state.user.id}` }} />
-              ) : (
-                <Login onLogin={this.onLogin} />
-              )}
-            </Route>
-            <Route path="/register" component={Register} />
-            <Route exact path="/profile" render={this.isLoginnedUser} />
-            <PrivateRoute
-              path="/profile/:id"
-              user={user}
-              onLogOut={this.onLogOut}
-            />
-          </Switch>
+          <Routes
+            user={user}
+            onLogin={this.onLogin}
+            isLoginnedUser={this.isLoginnedUser}
+            onLogOut={this.onLogOut}
+          />
         </div>
       </Router>
     );

@@ -14,7 +14,6 @@ class Login extends React.Component {
   }
 
   onChangeInput = (event) => {
-    debugger;
     const { values } = this.state;
     const { name, value } = event.target;
     const updatedValues = { ...values };
