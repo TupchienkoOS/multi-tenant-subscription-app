@@ -8,7 +8,7 @@ export const NotLoginnedRoute = (props) => {
     <Route
       render={() =>
         userId ? (
-          <Redirect to={{ pathname: `/profile/${userId}` }} />
+          <Redirect to={{ pathname: props.location.state.from.pathname }} />
         ) : (
           props.children
         )

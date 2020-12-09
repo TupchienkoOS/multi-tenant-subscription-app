@@ -6,11 +6,13 @@ import Profile from "./profile";
 export const PrivateRoute = ({ ...rest }) => {
   return (
     <Route
-      render={() =>
+      render={(props) =>
         Cookies.get("usrId") ? (
           <Profile to={{ pathname: "/profile" }} />
         ) : (
-          <Redirect to={{ pathname: "/login" }} />
+          <Redirect
+            to={{ pathname: "/login", state: { from: props.location } }}
+          />
         )
       }
     />
