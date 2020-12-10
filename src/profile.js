@@ -9,30 +9,32 @@ import { AppContext } from "./App";
 import Cookies from "js-cookie";
 
 const Profile = ({ onLogOut }) => {
+  console.log("profile");
   const getCurrentUserById = () => {
-    console.log(Cookies.get("usrId"));
     const currentUser = users.filter((user) => {
       return user.id === +Cookies.get("usrId");
     })[0];
     return currentUser;
   };
 
-  const { notifications, messages } = getCurrentUserById();
+  const user = getCurrentUserById();
 
   return (
-    <div id="wrapper">
-      <NavBarSide user={getCurrentUserById} />
-      <div id="page-wrapper" className="gray-bg">
-        <NavBarTop
-          onLogOut={onLogOut}
-          notifications={notifications}
-          messages={messages}
-        />
-        <PageHeading />
-        <PageContent />
-        <PageFooter />
+    user && (
+      <div id="wrapper">
+        <NavBarSide user={user} />
+        <div id="page-wrapper" className="gray-bg">
+          <NavBarTop
+            onLogOut={onLogOut}
+            notifications={user.notifications}
+            messages={user.messages}
+          />
+          <PageHeading />
+          <PageContent />
+          <PageFooter />
+        </div>
       </div>
-    </div>
+    )
   );
 };
 

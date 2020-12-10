@@ -1,6 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Redirect } from "react-router-dom";
-import { Routes } from "./routes";
+import { BrowserRouter as Router } from "react-router-dom";
+import Routes from "./routes";
 import { users } from "./data/users";
 import Cookies from "js-cookie";
 
@@ -17,7 +17,13 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidUpdate() {
+    console.log("didupdate app");
+  }
+
+  componentDidMount() {
+    console.log("didmount app");
+  }
 
   onLogOut = (event) => {
     // event.preventDefault();
@@ -56,16 +62,12 @@ class App extends React.Component {
     const { user } = this.state;
     return (
       <AppContext.Provider value={this.onLogOut}>
-        <Router basename="/multi-tenant-subscription-app">
-          <div>
-            <Routes
-              user={user}
-              onLogin={this.onLogin}
-              isLoginnedUser={this.isLoginnedUser}
-              onLogOut={this.onLogOut}
-            />
-          </div>
-        </Router>
+        <Routes
+          user={user}
+          onLogin={this.onLogin}
+          isLoginnedUser={this.isLoginnedUser}
+          onLogOut={this.onLogOut}
+        />
       </AppContext.Provider>
     );
   }

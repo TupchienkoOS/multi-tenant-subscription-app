@@ -17,8 +17,12 @@ class Register extends React.Component {
       hover: { termsNPolicy: false },
     };
   }
+  componentDidUpdate() {
+    console.log("didupdate register");
+  }
 
   componentDidMount() {
+    console.log("didmount register");
     document.body.className = "gray-bg";
   }
 

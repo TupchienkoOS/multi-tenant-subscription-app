@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import Cookies from "js-cookie";
 import Profile from "./profile";
 
-export const PrivateRoute = ({ ...rest }) => {
+export const PrivateRoute = () => {
   return (
     <Route
       render={(props) =>
@@ -11,7 +11,10 @@ export const PrivateRoute = ({ ...rest }) => {
           <Profile to={{ pathname: "/profile" }} />
         ) : (
           <Redirect
-            to={{ pathname: "/login", state: { from: props.location } }}
+            to={{
+              pathname: "/login",
+              state: { from: props.location },
+            }}
           />
         )
       }

@@ -9,7 +9,12 @@ class Login extends React.Component {
     this.state = { values: { name: "", password: "" } };
   }
 
+  componentDidUpdate() {
+    console.log("didupdate login");
+  }
+
   componentDidMount() {
+    console.log("didmount login");
     document.body.className = "gray-bg";
   }
 
