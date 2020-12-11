@@ -1,8 +1,8 @@
 import React from "react";
-import avatarSmall from "../img/profile_small.jpg";
+//import avatarSmall from "../img/profile_small.jpg";
 
 export const NavBarSide = ({ user }) => {
-  const { firstName, lastName, role } = user;
+  const { firstName, lastName, role, avatarSmall } = user;
 
   return (
     <nav className="navbar-default navbar-static-side" role="navigation">
@@ -15,7 +15,7 @@ export const NavBarSide = ({ user }) => {
                 className="rounded-circle"
                 src={avatarSmall}
               />
-              <a data-toggle="dropdown" className="dropdown-toggle" href="#">
+              <span data-toggle="dropdown" className="dropdown-toggle" href="#">
                 <span className="block m-t-xs font-bold">
                   {firstName + " " + lastName}
                 </span>
@@ -23,7 +23,7 @@ export const NavBarSide = ({ user }) => {
                   {role}
                   <b className="caret"></b>
                 </span>
-              </a>
+              </span>
               <ul className="dropdown-menu animated fadeInRight m-t-xs">
                 <li>
                   <a className="dropdown-item" href="profile.html">
@@ -50,7 +50,7 @@ export const NavBarSide = ({ user }) => {
             </div>
             <div className="logo-element">IN+</div>
           </li>
-          {/* <li>
+          <li>
             <a href="index.html">
               <i className="fa fa-th-large"></i>{" "}
               <span className="nav-label">Dashboards</span>{" "}
@@ -545,7 +545,7 @@ export const NavBarSide = ({ user }) => {
               <i className="fa fa-database"></i>{" "}
               <span className="nav-label">Package</span>
             </a>
-          </li> */}
+          </li>
         </ul>
       </div>
     </nav>
