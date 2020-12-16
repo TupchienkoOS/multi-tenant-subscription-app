@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, withRouter } from "react-router-dom";
 import Routes from "./routes";
 import { users } from "./data/users";
 import Cookies from "js-cookie";
@@ -40,9 +40,10 @@ class App extends React.Component {
     const currentUser = users.filter((user) => {
       return user.login === loginUser.name;
     })[0];
-    this.setState({ user: currentUser });
-
-    Cookies.set("usrId", currentUser.id);
+    if (typeof currentUser !== "undefined") {
+      this.setState({ user: currentUser });
+      Cookies.set("usrId", currentUser.id);
+    }
   };
 
   onSubmit = (event) => {
