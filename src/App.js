@@ -3,6 +3,8 @@ import { BrowserRouter as Router, withRouter } from "react-router-dom";
 import Routes from "./routes";
 import { users } from "./data/users";
 import Cookies from "js-cookie";
+import { v4 } from "uuid";
+import { NotificationContext } from "./notification-provider";
 
 export const AppContext = React.createContext();
 
@@ -17,6 +19,7 @@ class App extends React.Component {
     };
   }
 
+  static contextType = NotificationContext;
   componentDidUpdate() {
     console.log("didupdate app");
   }
@@ -43,6 +46,17 @@ class App extends React.Component {
     if (typeof currentUser !== "undefined") {
       this.setState({ user: currentUser });
       Cookies.set("usrId", currentUser.id);
+    } else {
+      const dispatch = this.context;
+      dispatch({
+        type: "ADD_NOTIFICATION",
+        payload: {
+          id: v4(),
+          type: "SUCCESS",
+          messageHeader: "Loggin error",
+          messageText: "To enter first you need to register",
+        },
+      });
     }
   };
 

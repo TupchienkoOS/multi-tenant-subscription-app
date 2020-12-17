@@ -7,10 +7,13 @@ import "./css/animate.css";
 import "./App.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import NotificationProvider from "./notification-provider";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <NotificationProvider>
+      <App />
+    </NotificationProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
