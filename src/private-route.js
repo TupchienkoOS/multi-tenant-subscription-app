@@ -8,7 +8,7 @@ export const PrivateRoute = () => {
     <Route
       render={(props) =>
         Cookies.get("usrId") ? (
-          <Profile to={{ pathname: "/profile" }} />
+          <Profile to={{ pathname: "/profile" }} location={props} />
         ) : (
           <Redirect
             to={{

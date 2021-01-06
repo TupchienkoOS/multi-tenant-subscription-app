@@ -5,7 +5,8 @@ import Cookies from "js-cookie";
 export const NotLoginnedRoute = (props) => {
   const userId = Cookies.get("usrId");
 
-  const isPreviousLocationIdentify = () => {
+  const previousLocation = () => {
+    console.log("notloginnedroute");
     return typeof props.location.state != "undefined"
       ? props.location.state.from.pathname
       : "/profile";
@@ -16,7 +17,7 @@ export const NotLoginnedRoute = (props) => {
         userId ? (
           <Redirect
             to={{
-              pathname: isPreviousLocationIdentify(),
+              pathname: previousLocation(),
             }}
           />
         ) : (

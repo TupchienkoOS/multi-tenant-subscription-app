@@ -5,26 +5,14 @@ export const companies = [
     login: "yoga@.com.ua",
     owners: [1],
     tenants: [2],
-    messages: [],
-    notifications: [
-      {
-        notification: "Bruce",
-        date: "Wayne",
-        id: "1",
-      },
-
-      {
-        notification: "Peter",
-        date: "Parker",
-        id: "2",
-      },
-
-      {
-        notification: "Tony",
-        date: "Stark",
-        id: "3",
-      },
-    ],
+    model: "Model 1",
+    status: "Enable",
+    price: "$50.00",
+    description: `It is a long established fact that a reader will be distracted
+      by the readable content of a page when looking at its layout.
+      The point of using Lorem Ipsum is that it has a more-or-less
+      normal distribution of letters, as opposed to using 'Content
+      here, content here', making it look like readable English.`,
     avatarSmall:
       "D:/DEV/multi-tenant-subscription-app/src/img/profile_small.jpg",
   },
@@ -34,26 +22,14 @@ export const companies = [
     login: "fitness@.com.ua",
     owners: [1],
     tenants: [2],
-    messages: [],
-    notifications: [
-      {
-        notification: "Bruce",
-        date: "Wayne",
-        id: "1",
-      },
-
-      {
-        notification: "Peter",
-        date: "Parker",
-        id: "2",
-      },
-
-      {
-        notification: "Tony",
-        date: "Stark",
-        id: "3",
-      },
-    ],
+    model: "Model 2",
+    status: "Disable",
+    price: "$50.00",
+    description: `It is a long established fact that a reader will be distracted
+      by the readable content of a page when looking at its layout.
+      The point of using Lorem Ipsum is that it has a more-or-less
+      normal distribution of letters, as opposed to using 'Content
+      here, content here', making it look like readable English.`,
     avatarSmall:
       "D:/DEV/multi-tenant-subscription-app/src/img/profile_small.jpg",
   },
