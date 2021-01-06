@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import DbApi from "../src/data/dbApi";
+import Cookies from "js-cookie";
 
 export const CompaniesList = ({
   companies,
@@ -10,7 +11,7 @@ export const CompaniesList = ({
 }) => {
   return (
     <tbody>
-      {DbApi.getUserCompanies(1).map((company) => {
+      {DbApi.getUserCompanies(+Cookies.get("usrId")).map((company) => {
         const path = `/company/${company.id}`;
         return (
           <tr
