@@ -1,11 +1,10 @@
-export const users = [
+export const companies = [
   {
     id: 1,
-    firstName: "David",
-    lastName: "Williams",
-    role: "owner",
-    companies: [1, 2],
-    login: "test@.com.ua",
+    name: "Yoga_center",
+    login: "yoga@.com.ua",
+    owners: [1],
+    tenants: [2],
     messages: [],
     notifications: [
       {
@@ -26,14 +25,15 @@ export const users = [
         id: "3",
       },
     ],
-    avatarSmall: "../multi-tenant-subscription-app/src/img/profile_small.jpg",
+    avatarSmall:
+      "D:/DEV/multi-tenant-subscription-app/src/img/profile_small.jpg",
   },
   {
     id: 2,
-    firstName: "Bruce",
-    lastName: "Wayne",
-    role: "tenant",
-    login: "test1@.com.ua",
+    name: "Fitnes_center",
+    login: "fitness@.com.ua",
+    owners: [1],
+    tenants: [2],
     messages: [],
     notifications: [
       {
