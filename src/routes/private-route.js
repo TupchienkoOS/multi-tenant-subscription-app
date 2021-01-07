@@ -1,14 +1,16 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import Cookies from "js-cookie";
-import Profile from "./profile";
+import Profile from "../profile";
 
-export const PrivateRoute = () => {
+export const PrivateRoute = (props) => {
+  console.log(props);
+  console.log("PrivateRoute");
   return (
     <Route
       render={(props) =>
         Cookies.get("usrId") ? (
-          <Profile to={{ pathname: "/profile" }} location={props} />
+          <Profile />
         ) : (
           <Redirect
             to={{

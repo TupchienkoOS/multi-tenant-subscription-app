@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, withRouter } from "react-router-dom";
-import Routes from "./routes";
+import Routes from "./routes/routes";
 import { users } from "./data/users";
 import Cookies from "js-cookie";
 import { v4 } from "uuid";

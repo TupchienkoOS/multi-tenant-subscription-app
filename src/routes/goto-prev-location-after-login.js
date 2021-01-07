@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import Cookies from "js-cookie";
 
-export const NotLoginnedRoute = (props) => {
+export const GoToPrevLocationAfterLogIn = (props) => {
   const userId = Cookies.get("usrId");
 
   const previousLocation = () => {

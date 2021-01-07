@@ -8,9 +8,9 @@ import { users } from "./data/users";
 import { AppContext } from "./App";
 import Cookies from "js-cookie";
 
-const Profile = ({ onLogOut }) => {
-  console.log("profile");
+const Profile = ({ onLogOut, location }) => {
   const getCurrentUserById = () => {
+    debugger;
     const currentUser = users.filter((user) => {
       return user.id === +Cookies.get("usrId");
     })[0];
@@ -37,6 +37,8 @@ const Profile = ({ onLogOut }) => {
     )
   );
 };
+
+Profile.defaultProps = {};
 
 const UserContainer = () => {
   return (
