@@ -6,17 +6,14 @@ import { PageContent } from "./profile/page-content";
 import { PageFooter } from "./profile/page-footer";
 import { users } from "./data/users";
 import { AppContext } from "./App";
+import DbApi from "./data/dbApi";
 import Cookies from "js-cookie";
 
 const Profile = ({ onLogOut, ...rest }) => {
   const usrId = Cookies.get("usrId");
 
   const getCurrentUserById = () => {
-    console.log(rest.location);
-    const currentUser = users.filter((user) => {
-      return user.id === +usrId;
-    })[0];
-
+    const currentUser = DbApi.getUserById(usrId);
     return currentUser;
   };
 
@@ -47,7 +44,7 @@ const UserContainer = ({ location }) => {
   return (
     <AppContext.Consumer>
       {(context) => {
-        return <Profile onLogOut={context} location={location} />;
+        return <Profile onLogOut={context} />;
       }}
     </AppContext.Consumer>
   );
