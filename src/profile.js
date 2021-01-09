@@ -4,7 +4,6 @@ import { NavBarTop } from "./profile/nav-bar-top";
 import { PageHeading } from "./profile/page-heading";
 import { PageContent } from "./profile/page-content";
 import { PageFooter } from "./profile/page-footer";
-import { users } from "./data/users";
 import { AppContext } from "./App";
 import DbApi from "./data/dbApi";
 import Cookies from "js-cookie";
