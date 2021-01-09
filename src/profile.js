@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavBarSide } from "./profile/nav-bar-side";
 import { NavBarTop } from "./profile/nav-bar-top";
 import { PageHeading } from "./profile/page-heading";
@@ -8,12 +8,15 @@ import { users } from "./data/users";
 import { AppContext } from "./App";
 import Cookies from "js-cookie";
 
-const Profile = ({ onLogOut, location }) => {
+const Profile = ({ onLogOut, ...rest }) => {
+  const usrId = Cookies.get("usrId");
+
   const getCurrentUserById = () => {
-    debugger;
+    console.log(rest.location);
     const currentUser = users.filter((user) => {
-      return user.id === +Cookies.get("usrId");
+      return user.id === +usrId;
     })[0];
+
     return currentUser;
   };
 
@@ -40,11 +43,11 @@ const Profile = ({ onLogOut, location }) => {
 
 Profile.defaultProps = {};
 
-const UserContainer = () => {
+const UserContainer = ({ location }) => {
   return (
     <AppContext.Consumer>
       {(context) => {
-        return <Profile onLogOut={context} />;
+        return <Profile onLogOut={context} location={location} />;
       }}
     </AppContext.Consumer>
   );

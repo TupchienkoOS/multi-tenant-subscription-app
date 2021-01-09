@@ -7,9 +7,10 @@ export const GoToPrevLocationAfterLogIn = (props) => {
 
   const previousLocation = () => {
     console.log("notloginnedroute");
-    return typeof props.location.state != "undefined"
+    return typeof props.location.state != "undefined" &&
+      props.location.state.from.pathname !== "/profile"
       ? props.location.state.from.pathname
-      : "/profile";
+      : `/profile/${userId}`;
   };
   return (
     <Route

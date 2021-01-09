@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Register from "../register";
 import Login from "../login";
 import { PrivateRoute } from "./private-route";
+import Profile from "../profile";
 import { GoToPrevLocationAfterLogIn } from "./goto-prev-location-after-login";
 import { CompanyProfile } from "../company-profile";
 
@@ -18,13 +19,6 @@ class Routes extends React.Component {
         <Switch>
           <GoToPrevLocationAfterLogIn
             exact
-            path="/"
-            user={user}
-            onLogOut={onLogOut}
-          >
-            <Login onLogin={onLogin} />
-          </GoToPrevLocationAfterLogIn>
-          <GoToPrevLocationAfterLogIn
             path="/login"
             user={user}
             onLogOut={onLogOut}
@@ -32,17 +26,14 @@ class Routes extends React.Component {
             <Login onLogin={onLogin} />
           </GoToPrevLocationAfterLogIn>
           <GoToPrevLocationAfterLogIn
+            exact
             path="/register"
             user={user}
             onLogOut={onLogOut}
           >
             <Register />
           </GoToPrevLocationAfterLogIn>
-          <PrivateRoute path="/profile/:id" user={user} onLogOut={onLogOut} />
-          <PrivateRoute />
-          <PrivateRoute path="/profile" user={user} onLogOut={onLogOut} />
-          <PrivateRoute />
-          <Route path="/company/:id" children={<CompanyProfile />} />
+          <PrivateRoute path="/" />
         </Switch>
       </Router>
     );
