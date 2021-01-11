@@ -3,6 +3,18 @@ import { users } from "./users";
 import { companies } from "./companies";
 
 export default class DbApi extends Component {
+  static getUserByLogin = (loginUser) => {
+    let currentUser = users.filter((user) => {
+      return user.login === loginUser.name;
+    })[0];
+    if (typeof currentUser === "undefined") {
+      currentUser = companies.filter((user) => {
+        return user.login === loginUser.name;
+      })[0];
+    }
+    return currentUser;
+  };
+
   static getUserById = (usrId) => {
     const currentUser = users.filter((user) => {
       return user.id === +usrId;
