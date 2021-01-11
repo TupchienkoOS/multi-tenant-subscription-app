@@ -7,6 +7,7 @@ import { PageFooter } from "./profile/page-footer";
 import { AppContext } from "./App";
 import DbApi from "./data/dbApi";
 import Cookies from "js-cookie";
+import { useHistory } from "react-router-dom";
 
 const Profile = ({ onLogOut, ...rest }) => {
   const usrId = Cookies.get("usrId");
@@ -40,6 +41,13 @@ const Profile = ({ onLogOut, ...rest }) => {
 Profile.defaultProps = {};
 
 const UserContainer = ({ location }) => {
+  const usrId = Cookies.get("usrId");
+
+  const history = useHistory();
+
+  useEffect(() => {
+    history.push(`/profile/${usrId}`);
+  }, []);
   return (
     <AppContext.Consumer>
       {(context) => {

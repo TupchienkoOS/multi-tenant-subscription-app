@@ -4,18 +4,18 @@ import Cookies from "js-cookie";
 
 export const GoToPrevLocationAfterLogIn = (props) => {
   const userId = Cookies.get("usrId");
-
+  const compId = Cookies.get("compId");
   const previousLocation = () => {
     console.log("notloginnedroute");
-    return typeof props.location.state != "undefined" &&
-      props.location.state.from.pathname !== "/profile"
+    console.log(props);
+    return typeof props.location.state != "undefined"
       ? props.location.state.from.pathname
       : `/profile/${userId}`;
   };
   return (
     <Route
       render={() =>
-        userId ? (
+        userId || compId ? (
           <Redirect
             to={{
               pathname: previousLocation(),
