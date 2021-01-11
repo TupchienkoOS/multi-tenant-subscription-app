@@ -51,7 +51,7 @@ class Register extends React.Component {
 
   render() {
     const { name, email, password, termsNPolicy } = this.state.values;
-    const { onSubmit, onLogin } = this; //.props;
+    const { onSubmit, onLogin } = this;
     return (
       <div>
         <div className="middle-box text-center loginscreen   animated fadeInDown">

@@ -5,6 +5,7 @@ import { users } from "./data/users";
 import Cookies from "js-cookie";
 import { v4 } from "uuid";
 import { NotificationContext } from "./notification-provider";
+import DbApi from "./data/dbApi";
 
 export const AppContext = React.createContext();
 
@@ -13,6 +14,7 @@ class App extends React.Component {
     super();
     this.state = {
       user: false,
+      company: false,
       register: true,
       login: true,
       err: {},
@@ -20,6 +22,7 @@ class App extends React.Component {
   }
 
   static contextType = NotificationContext;
+
   componentDidUpdate() {
     console.log("didupdate app");
   }
@@ -30,8 +33,15 @@ class App extends React.Component {
 
   onLogOut = (event) => {
     // event.preventDefault();
-    this.setState({ user: false });
-    Cookies.remove("usrId");
+    const usrId = Cookies.get("usrId");
+    const compId = Cookies.get("compId");
+    if (this.state.user !== false || typeof usrId !== "undefined") {
+      Cookies.remove("usrId");
+      this.setState({ user: false });
+    } else if (this.state.company !== false || typeof compId !== "undefined") {
+      Cookies.remove("compId");
+      this.setState({ company: false });
+    }
   };
 
   onRegistr = (event) => {
@@ -40,12 +50,15 @@ class App extends React.Component {
   };
 
   onLogin = (loginUser) => {
-    const currentUser = users.filter((user) => {
-      return user.login === loginUser.name;
-    })[0];
+    const currentUser = DbApi.getUserByLogin(loginUser);
     if (typeof currentUser !== "undefined") {
-      this.setState({ user: currentUser });
-      Cookies.set("usrId", currentUser.id);
+      if (currentUser.type === "user") {
+        Cookies.set("usrId", currentUser.id);
+        this.setState({ user: currentUser });
+      } else if (currentUser.type === "company") {
+        Cookies.set("compId", currentUser.id);
+        this.setState({ company: currentUser });
+      }
     } else {
       const dispatch = this.context;
       dispatch({
@@ -82,6 +95,7 @@ class App extends React.Component {
           onLogin={this.onLogin}
           isLoginnedUser={this.isLoginnedUser}
           onLogOut={this.onLogOut}
+          onRegistr={this.onRegistr}
         />
       </AppContext.Provider>
     );
