@@ -3,10 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Register from "../register";
 import Login from "../login";
 import { PrivateRoutes } from "./private-route";
-import { PublicRoutes } from "./public-routes";
 import Profile from "../profile";
 import { CompanyProfile } from "../company-profile";
-import { GoToPrevLocationAfterLogIn } from "./goto-prev-location-after-login";
+import { PublicRoute } from "./public-route";
 
 class Routes extends React.Component {
   componentDidUpdate() {
@@ -18,12 +17,12 @@ class Routes extends React.Component {
     return (
       <Router basename="/multi-tenant-subscription-app">
         <Switch>
-          <GoToPrevLocationAfterLogIn exact path="/login">
+          <PublicRoute exact path="/login">
             <Login onLogin={onLogin} />
-          </GoToPrevLocationAfterLogIn>
-          <GoToPrevLocationAfterLogIn exact path="/register">
+          </PublicRoute>
+          <PublicRoute exact path="/register">
             <Register onRegistr={onRegistr} />
-          </GoToPrevLocationAfterLogIn>
+          </PublicRoute>
           <PrivateRoutes path="/" onLogOut={onLogOut} />
         </Switch>
       </Router>
