@@ -3,23 +3,54 @@ import { Route, Redirect, Switch, useRouteMatch } from "react-router-dom";
 import Cookies from "js-cookie";
 import UserContainer from "../profile";
 import CompanyContainer from "../company-profile";
+import { NoMatch } from "../no-match";
 
 export const PrivateRoutes = ({ children, ...rest }) => {
   const usrId = Cookies.get("usrId");
   const compId = Cookies.get("compId");
 
+  const privateRoutes = [
+    {
+      path: "/profile/:id",
+      from: "/profile/",
+      to: `/profile/${usrId}`,
+      component: <UserContainer />,
+    },
+    {
+      path: "/profile",
+      from: "/profile/",
+      to: `/profile/${usrId}`,
+      component: <UserContainer />,
+    },
+    {
+      path: "/company",
+      from: "/company/",
+      to: `/company/${compId}`,
+      component: <CompanyContainer />,
+    },
+    {
+      path: "/company/:id",
+      from: "/company/",
+      to: `/company/${compId}`,
+      component: <CompanyContainer />,
+    },
+    {
+      path: "*",
+      from: "/company/",
+      to: `/company/${compId}`,
+      component: <NoMatch />,
+    },
+  ];
+
   const routes = () => {
     console.log("private routes");
     return (
       <Switch>
-        <Redirect exact from={"/profile/"} to={`/profile/${usrId}`} />
-        <Route path={"/profile/:id"}>
-          <UserContainer />
-        </Route>
-        <Redirect exact from={"/company/"} to={`/company/${compId}`} />
-        <Route path={"/company/:id"}>
-          <CompanyContainer />
-        </Route>
+        {privateRoutes.map((route, index) => (
+          <Route exact path={route.path} key={index}>
+            {route.component}
+          </Route>
+        ))}
       </Switch>
     );
   };
