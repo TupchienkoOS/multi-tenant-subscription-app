@@ -17,10 +17,10 @@ class Routes extends React.Component {
     return (
       <Router basename="/multi-tenant-subscription-app">
         <Switch>
-          <PublicRoute exact path="/login">
+          <PublicRoute exact path={["/login", "/company/login"]}>
             <Login onLogin={onLogin} />
           </PublicRoute>
-          <PublicRoute exact path="/register">
+          <PublicRoute exact path={["/register", "/company/register"]}>
             <Register onRegistr={onRegistr} />
           </PublicRoute>
           <PrivateRoutes path="/" onLogOut={onLogOut} />

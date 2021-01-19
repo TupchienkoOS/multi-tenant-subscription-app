@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Redirect, Switch, useRouteMatch } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 import Cookies from "js-cookie";
 import UserContainer from "../profile";
 import CompanyContainer from "../company-profile";
@@ -9,76 +9,72 @@ export const PrivateRoutes = ({ children, ...rest }) => {
   const usrId = Cookies.get("usrId");
   const compId = Cookies.get("compId");
 
+  const getRoutesFor = () => {
+    const loginAs = ["all"];
+    if (usrId) {
+      loginAs.push("user");
+    } else if (compId) {
+      loginAs.push("company");
+    }
+    return ["user", "company", "all"];
+  };
+
+  const isLogin = () => {
+    if (usrId || compId) return true;
+    else return false;
+  };
+
   const privateRoutes = [
     {
-      path: "/profile/:id",
-      from: "/profile/",
-      to: `/profile/${usrId}`,
+      for: "user",
+      defaultPath: "/profile",
+      loginPath: "/login",
+      path: ["/profile", "/profile/:id"],
+      exact: true,
       component: <UserContainer />,
     },
     {
-      path: "/profile",
-      from: "/profile/",
-      to: `/profile/${usrId}`,
-      component: <UserContainer />,
-    },
-    {
-      path: "/company",
-      from: "/company/",
-      to: `/company/${compId}`,
+      for: "company",
+      defaultPath: "/company/profile",
+      loginPath: "/company/login",
+      path: ["/company/profile", "/company/profile/:id"],
+      exact: true,
       component: <CompanyContainer />,
-    },
-    {
-      path: "/company/:id",
-      from: "/company/",
-      to: `/company/${compId}`,
-      component: <CompanyContainer />,
-    },
-    {
-      path: "*",
-      from: "/company/",
-      to: `/company/${compId}`,
-      component: <NoMatch />,
     },
   ];
 
-  const routes = () => {
+  const getRoutes = () => {
     console.log("private routes");
-    return (
-      <Switch>
-        {privateRoutes.map((route, index) => (
-          <Route exact path={route.path} key={index}>
-            {route.component}
-          </Route>
-        ))}
-      </Switch>
+    const routes = privateRoutes.filter((route) =>
+      getRoutesFor().includes(route.for)
     );
+    console.log(routes, "rotes");
+    return routes;
   };
-
-  console.log("PrivateRoute");
-  return usrId || compId ? (
-    routes()
-  ) : (
-    <Route
-      render={(props) => (
-        <Redirect
-          to={{
-            pathname: "/login",
-            state: { from: props.location },
-          }}
+  return (
+    <Switch>
+      {getRoutes().map((route, index) => (
+        <Route
+          exact={route.exact}
+          path={route.path}
+          key={index}
+          render={({ location }) =>
+            isLogin() ? (
+              route.component
+            ) : (
+              <Redirect
+                to={{
+                  pathname: [route.loginPath],
+                  state: { from: location },
+                }}
+              />
+            )
+          }
         />
-      )}
-    />
+      ))}
+      <Route path="*">
+        <NoMatch />
+      </Route>
+    </Switch>
   );
 };
-
-// const isUser = useRouteMatch({ path: "/profile" });
-// const isCompany = useRouteMatch({ path: "/company" });
-
-// const path = () => {
-//   return isUser === null ? isCompany.path : isUser.path;
-// };
-
-// const logOutUserToComp = () => {
-//   if (typeof usrId !== "undefined" && isCompany) rest.onLogOut();
-// };
