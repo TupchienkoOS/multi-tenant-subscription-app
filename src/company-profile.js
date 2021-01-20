@@ -7,28 +7,16 @@ import { useEffect } from "react";
 export const CompanyProfile = ({ onLogOut }) => {
   const compId = Cookies.get("compId");
 
-  useEffect(() => {
-    if (typeof compId === "undefined") {
-      onLogOut();
-    }
-  }, []);
-
   let { id } = useParams();
   return (
     <div>
-      <a onClick={() => onLogOut()}>TEST COMPANY ID:{id} </a>
+      <a onClick={() => onLogOut("company")}>TEST COMPANY ID:{id} </a>
     </div>
   );
 };
 
 const CompanyContainer = () => {
   const compId = Cookies.get("compId");
-
-  const history = useHistory();
-
-  useEffect(() => {
-    history.push(`/company/${compId}`);
-  }, []);
 
   return (
     <AppContext.Consumer>

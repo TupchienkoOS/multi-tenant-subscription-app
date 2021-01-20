@@ -12,7 +12,7 @@ export const CompaniesList = ({
   return (
     <tbody>
       {DbApi.getUserCompanies(+Cookies.get("usrId")).map((company) => {
-        const path = `/company/${company.id}`;
+        const path = `/company/profile/${company.id}`;
         return (
           <tr
             key={company.id}

@@ -40,7 +40,7 @@ const Profile = ({ onLogOut, ...rest }) => {
 
 Profile.defaultProps = {};
 
-const UserContainer = ({ location }) => {
+const UserContainer = () => {
   const usrId = Cookies.get("usrId");
 
   const history = useHistory();
@@ -48,6 +48,7 @@ const UserContainer = ({ location }) => {
   useEffect(() => {
     history.push(`/profile/${usrId}`);
   }, []);
+
   return (
     <AppContext.Consumer>
       {(context) => {

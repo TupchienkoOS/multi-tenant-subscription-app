@@ -31,14 +31,13 @@ class App extends React.Component {
     console.log("didmount app");
   }
 
-  onLogOut = (event) => {
+  onLogOut = (param) => {
+    console.log(param, "logout");
     // event.preventDefault();
-    const usrId = Cookies.get("usrId");
-    const compId = Cookies.get("compId");
-    if (this.state.user !== false || typeof usrId !== "undefined") {
+    if (param === "user") {
       Cookies.remove("usrId");
       this.setState({ user: false });
-    } else if (this.state.company !== false || typeof compId !== "undefined") {
+    } else if (param === "company") {
       Cookies.remove("compId");
       this.setState({ company: false });
     }
@@ -52,10 +51,10 @@ class App extends React.Component {
   onLogin = (loginUser) => {
     const currentUser = DbApi.getUserByLogin(loginUser);
     if (typeof currentUser !== "undefined") {
-      if (currentUser.type === "user") {
+      if (currentUser.role === 1) {
         Cookies.set("usrId", currentUser.id);
         this.setState({ user: currentUser });
-      } else if (currentUser.type === "company") {
+      } else if (currentUser.role === 2) {
         Cookies.set("compId", currentUser.id);
         this.setState({ company: currentUser });
       }
@@ -87,11 +86,12 @@ class App extends React.Component {
   };
 
   render() {
-    const { user } = this.state;
+    const { user, company } = this.state;
     return (
       <AppContext.Provider value={this.onLogOut}>
         <Routes
           user={user}
+          company={company}
           onLogin={this.onLogin}
           isLoginnedUser={this.isLoginnedUser}
           onLogOut={this.onLogOut}

@@ -1,6 +1,27 @@
 import React from "react";
+import { useRouteMatch } from "react-router-dom";
 
 export const NavBarTop = ({ onLogOut, notifications, messages }) => {
+  let isUserMatch = useRouteMatch({
+    path: "/profile",
+    strict: true,
+    sensitive: true,
+  });
+
+  let isCompanyMatch = useRouteMatch({
+    path: "/company",
+    strict: true,
+    sensitive: true,
+  });
+
+  const getLogOutFor = () => {
+    if (isUserMatch) {
+      return "user";
+    } else if (isCompanyMatch) {
+      return "company";
+    }
+  };
+
   const getNumberMessages = () => {
     const msgCnt = Object.keys(messages).length;
     return msgCnt !== 0 ? (
@@ -189,7 +210,7 @@ export const NavBarTop = ({ onLogOut, notifications, messages }) => {
           </li>
 
           <li>
-            <a onClick={() => onLogOut()}>
+            <a onClick={() => onLogOut(getLogOutFor())}>
               <i className="fa fa-sign-out"></i> Log out
             </a>
           </li>
