@@ -7,6 +7,7 @@ export default class DbApi extends Component {
     let currentUser = users.filter((user) => {
       return user.login === loginUser.name;
     })[0];
+
     if (typeof currentUser === "undefined") {
       currentUser = companies.filter((user) => {
         return user.login === loginUser.name;
@@ -18,6 +19,13 @@ export default class DbApi extends Component {
   static getUserById = (usrId) => {
     const currentUser = users.filter((user) => {
       return user.id === +usrId;
+    })[0];
+    return currentUser;
+  };
+
+  static getCompanyById = (compId) => {
+    const currentUser = companies.filter((comp) => {
+      return comp.id === +compId;
     })[0];
     return currentUser;
   };

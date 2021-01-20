@@ -19,8 +19,9 @@ export const PrivateRoutes = ({ children, ...rest }) => {
     return ["user", "company", "all"];
   };
 
-  const isLogin = () => {
-    if (usrId || compId) return true;
+  const isLogin = (role) => {
+    if (role === "user" && usrId) return true;
+    else if (role === "company" && compId) return true;
     else return false;
   };
 
@@ -37,7 +38,7 @@ export const PrivateRoutes = ({ children, ...rest }) => {
       for: "company",
       defaultPath: "/company/profile",
       loginPath: "/company/login",
-      path: ["/company/profile", "/company/profile/:id"],
+      path: ["/company", "/company/profile", "/company/profile/:id"],
       exact: true,
       component: <CompanyContainer />,
     },
@@ -59,7 +60,7 @@ export const PrivateRoutes = ({ children, ...rest }) => {
           path={route.path}
           key={index}
           render={({ location }) =>
-            isLogin() ? (
+            isLogin(route.for) ? (
               route.component
             ) : (
               <Redirect
