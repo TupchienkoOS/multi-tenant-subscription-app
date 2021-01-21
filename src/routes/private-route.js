@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import Cookies from "js-cookie";
-import UserContainer from "../profile";
+import UserContainer from "../pages/profile";
 import CompanyContainer from "../company-profile";
 import { NoMatch } from "../no-match";
 
@@ -28,9 +28,9 @@ export const PrivateRoutes = ({ children, ...rest }) => {
   const privateRoutes = [
     {
       for: "user",
-      defaultPath: "/profile",
-      loginPath: "/login",
-      path: ["/profile", "/profile/:id"],
+      defaultPath: "/user/profile",
+      loginPath: "/user/login",
+      path: ["/user", "/user/profile", "/user/profile/:id"],
       exact: true,
       component: <UserContainer />,
     },

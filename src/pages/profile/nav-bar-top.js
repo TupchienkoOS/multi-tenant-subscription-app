@@ -3,7 +3,7 @@ import { useRouteMatch } from "react-router-dom";
 
 export const NavBarTop = ({ onLogOut, notifications, messages }) => {
   let isUserMatch = useRouteMatch({
-    path: "/profile",
+    path: "/user",
     strict: true,
     sensitive: true,
   });

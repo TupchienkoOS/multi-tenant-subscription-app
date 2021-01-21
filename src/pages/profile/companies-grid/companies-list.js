@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import DbApi from "../data/dbApi";
+import DbApi from "../../../data/dbApi";
 import Cookies from "js-cookie";
 
 export const CompaniesList = ({

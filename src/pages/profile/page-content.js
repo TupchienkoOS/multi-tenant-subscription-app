@@ -1,5 +1,5 @@
 import React from "react";
-import CompaniesGrid from "../companies-grid/companies-grid";
+import CompaniesGrid from "./companies-grid/companies-grid";
 
 export const PageContent = () => {
   return (

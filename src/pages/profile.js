@@ -4,8 +4,8 @@ import { NavBarTop } from "./profile/nav-bar-top";
 import { PageHeading } from "./profile/page-heading";
 import { PageContent } from "./profile/page-content";
 import { PageFooter } from "./profile/page-footer";
-import { AppContext } from "./App";
-import DbApi from "./data/dbApi";
+import { AppContext } from "../App";
+import DbApi from "../data/dbApi";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 
@@ -46,7 +46,7 @@ const UserContainer = () => {
   const history = useHistory();
 
   useEffect(() => {
-    history.push(`/profile/${usrId}`);
+    history.push(`/user/profile/${usrId}`);
   }, []);
 
   return (

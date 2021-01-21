@@ -1,6 +1,6 @@
 import React from "react";
-import { InputField } from "./input-field";
-import { Button } from "./button";
+import { InputField } from "../input-field";
+import { Button } from "../button";
 import { Link } from "react-router-dom";
 
 class Login extends React.Component {

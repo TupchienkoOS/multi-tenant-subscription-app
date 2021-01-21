@@ -44,7 +44,7 @@ export const PublicRoute = (props) => {
     strict: true,
   });
   const isUser = matchPath(props.location.pathname, {
-    path: "/login",
+    path: "/user",
     exact: false,
     strict: true,
   });
