@@ -1,19 +1,42 @@
 import React from "react";
 import { InputField } from "../input-field";
 import { Button } from "../button";
-import { Link } from "react-router-dom";
+import { Link, matchPath } from "react-router-dom";
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { values: { name: "", password: "" } };
+
+    this.state = {
+      values: { name: "", password: "", role: null },
+    };
   }
+
+  isCompany = matchPath(window.location.pathname, {
+    path: "/multi-tenant-subscription-app/company",
+    exact: false,
+    strict: true,
+  });
+  isUser = matchPath(window.location.pathname, {
+    path: "/multi-tenant-subscription-app/user",
+    exact: false,
+    strict: true,
+  });
+
+  getLoginRole = () => {
+    if (this.isUser) return 1;
+    else if (this.isCompany) return 2;
+  };
 
   componentDidUpdate() {}
 
   componentDidMount() {
     console.log("didmount login");
     document.body.className = "gray-bg";
+
+    this.onChangeInput({
+      target: { name: "role", value: this.getLoginRole() },
+    });
   }
 
   onChangeInput = (event) => {
