@@ -7,7 +7,7 @@ import { rolesIdName } from "../data/roles";
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    console.log(rolesIdName, rolesIdName["user"]);
+    console.log("login props", props);
     this.state = {
       values: { name: "", password: "", role: null },
     };
@@ -23,16 +23,15 @@ class Login extends React.Component {
     exact: false,
     strict: true,
   });
-  //зробити диспечеризацію щоб не було 1 і 2 а було roles['user'] roles['company']
+
   getLoginRole = () => {
-    debugger;
     let roleid;
     if (this.isUser) {
       roleid = rolesIdName["user"];
     } else if (this.isCompany) {
       roleid = rolesIdName["company"];
     }
-    return +roleid;
+    return roleid;
   };
 
   componentDidUpdate() {}

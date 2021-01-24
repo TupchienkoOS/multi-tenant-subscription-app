@@ -50,7 +50,6 @@ class App extends React.Component {
   };
 
   onLogin = (loginUser) => {
-    debugger;
     const currentUser = DbApi.getUserByLogin(loginUser);
     if (typeof currentUser !== "undefined") {
       if (currentUser.role === RolesIdName["user"]) {

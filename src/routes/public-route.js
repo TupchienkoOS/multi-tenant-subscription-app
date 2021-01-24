@@ -14,12 +14,10 @@ export const PublicRoute = (props) => {
   const getDefaultPath = () => {
     let defaultPath;
     if (isUser && usrId) {
-      debugger;
       defaultPath = roles.filter(
         (role) => role.id === DbApi.getUserById(usrId).role
       )[0].defaultPath;
     } else if (isCompany && compId) {
-      debugger;
       defaultPath = roles.filter(
         (role) => role.id === DbApi.getCompanyById(compId).role
       )[0].defaultPath;

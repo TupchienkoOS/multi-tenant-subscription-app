@@ -7,11 +7,15 @@ import { PageFooter } from "./profile/page-footer";
 import { AppContext } from "../App";
 import DbApi from "../data/dbApi";
 import Cookies from "js-cookie";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { rolesIdName as RolesIdName } from "../data/roles";
 
 const Profile = ({ onLogOut, ...rest }) => {
   const usrId = Cookies.get("usrId");
+
+  let { role } = useParams();
+
+  console.log("profile role", role);
 
   const getCurrentUserById = () => {
     const currentUser = DbApi.getUserById(usrId);
