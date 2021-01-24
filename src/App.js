@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import { v4 } from "uuid";
 import { NotificationContext } from "./notification-provider";
 import DbApi from "./data/dbApi";
+import { rolesIdName as RolesIdName } from "./data/roles";
 
 export const AppContext = React.createContext();
 
@@ -34,10 +35,10 @@ class App extends React.Component {
   onLogOut = (param) => {
     console.log(param, "logout");
     // event.preventDefault();
-    if (param === "user") {
+    if (param === RolesIdName["user"]) {
       Cookies.remove("usrId");
       this.setState({ user: false });
-    } else if (param === "company") {
+    } else if (param === RolesIdName["company"]) {
       Cookies.remove("compId");
       this.setState({ company: false });
     }
@@ -52,10 +53,10 @@ class App extends React.Component {
     debugger;
     const currentUser = DbApi.getUserByLogin(loginUser);
     if (typeof currentUser !== "undefined") {
-      if (currentUser.role === 1) {
+      if (currentUser.role === RolesIdName["user"]) {
         Cookies.set("usrId", currentUser.id);
         this.setState({ user: currentUser });
-      } else if (currentUser.role === 2) {
+      } else if (currentUser.role === RolesIdName["company"]) {
         Cookies.set("compId", currentUser.id);
         this.setState({ company: currentUser });
       }

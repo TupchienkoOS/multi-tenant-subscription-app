@@ -2,11 +2,12 @@ import React from "react";
 import { InputField } from "../input-field";
 import { Button } from "../button";
 import { Link, matchPath } from "react-router-dom";
+import { rolesIdName } from "../data/roles";
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
-
+    console.log(rolesIdName, rolesIdName["user"]);
     this.state = {
       values: { name: "", password: "", role: null },
     };
@@ -22,10 +23,16 @@ class Login extends React.Component {
     exact: false,
     strict: true,
   });
-
+  //зробити диспечеризацію щоб не було 1 і 2 а було roles['user'] roles['company']
   getLoginRole = () => {
-    if (this.isUser) return 1;
-    else if (this.isCompany) return 2;
+    debugger;
+    let roleid;
+    if (this.isUser) {
+      roleid = rolesIdName["user"];
+    } else if (this.isCompany) {
+      roleid = rolesIdName["company"];
+    }
+    return +roleid;
   };
 
   componentDidUpdate() {}

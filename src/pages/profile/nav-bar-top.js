@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouteMatch } from "react-router-dom";
+import { rolesIdName as RolesIdName } from "../../data/roles";
 
 export const NavBarTop = ({ onLogOut, notifications, messages }) => {
   let isUserMatch = useRouteMatch({
@@ -16,9 +17,9 @@ export const NavBarTop = ({ onLogOut, notifications, messages }) => {
 
   const getLogOutFor = () => {
     if (isUserMatch) {
-      return "user";
+      return RolesIdName["user"];
     } else if (isCompanyMatch) {
-      return "company";
+      return RolesIdName["company"];
     }
   };
 

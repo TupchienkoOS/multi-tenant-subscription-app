@@ -8,6 +8,7 @@ import { AppContext } from "../App";
 import DbApi from "../data/dbApi";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
+import { rolesIdName as RolesIdName } from "../data/roles";
 
 const Profile = ({ onLogOut, ...rest }) => {
   const usrId = Cookies.get("usrId");
