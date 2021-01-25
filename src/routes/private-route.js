@@ -1,53 +1,43 @@
 import React from "react";
-import { Route, Redirect, Switch } from "react-router-dom";
+import { Route, Redirect, Switch, useParams } from "react-router-dom";
 import Cookies from "js-cookie";
-import UserContainer from "../pages/profile";
-import CompanyContainer from "../company-profile";
+import ProfileContainer from "../pages/profile";
 import { NoMatch } from "../no-match";
 
 export const PrivateRoutes = ({ children, ...rest }) => {
-  const usrId = Cookies.get("usrId");
-  const compId = Cookies.get("compId");
+  const user = Cookies.get("user");
+  const company = Cookies.get("company");
 
   const getRoutesFor = () => {
     const loginAs = ["all"];
-    if (usrId) {
+    if (user) {
       loginAs.push("user");
-    } else if (compId) {
+    } else if (company) {
       loginAs.push("company");
     }
     return ["user", "company", "all"];
   };
 
   const isLogin = (role) => {
-    if (role === "user" && usrId) return true;
-    else if (role === "company" && compId) return true;
+    if (role === "user" && user) return true;
+    else if (role === "company" && company) return true;
     else return false;
   };
 
+  const role = rest.computedMatch.params.role;
   const privateRoutes = [
     {
-      for: "user",
-      defaultPath: "/user/profile",
-      loginPath: "/user/login",
-      path: ["/user", "/user/profile", "/user/profile/:id"],
+      loginPath: `/${role}/login`,
+      path: ["/:role/", "/:role/profile", "/:role/profile/:id"],
       exact: true,
-      component: <UserContainer />,
-    },
-    {
-      for: "company",
-      defaultPath: "/company/profile",
-      loginPath: "/company/login",
-      path: ["/company", "/company/profile", "/company/profile/:id"],
-      exact: true,
-      component: <CompanyContainer />,
+      component: <ProfileContainer />,
     },
   ];
 
   const getRoutes = () => {
     console.log("private routes");
     const routes = privateRoutes.filter((route) =>
-      getRoutesFor().includes(route.for)
+      getRoutesFor().includes(role)
     );
     console.log(routes, "rotes");
     return routes;
@@ -60,7 +50,7 @@ export const PrivateRoutes = ({ children, ...rest }) => {
           path={route.path}
           key={index}
           render={({ location }) =>
-            isLogin(route.for) ? (
+            isLogin(role) ? (
               route.component
             ) : (
               <Redirect

@@ -1,5 +1,6 @@
 import React from "react";
 import { SideBarItems } from "./side-bar-items";
+import { roles } from "../../data/roles";
 //import avatarSmall from "../img/profile_small.jpg";
 const sideBarItems = [
   { id: 1, name: "PROFILE" },
@@ -9,8 +10,8 @@ const subItems = [
   { id: 1, name: "TEST1", itemId: 1 },
   { id: 2, name: "TEST2", itemId: 2 },
 ];
-export const NavBarSide = ({ user }) => {
-  const { firstName, lastName, role, avatarSmall } = user;
+export const NavBarSide = ({ user, role }) => {
+  const { firstName, lastName, name, avatarSmall } = user;
 
   return (
     <nav className="navbar-default navbar-static-side" role="navigation">
@@ -25,7 +26,7 @@ export const NavBarSide = ({ user }) => {
               />
               <span data-toggle="dropdown" className="dropdown-toggle" href="#">
                 <span className="block m-t-xs font-bold">
-                  {firstName + " " + lastName}
+                  {name + " " + (lastName || "")}
                 </span>
                 <span className="text-muted text-xs block">
                   {role}

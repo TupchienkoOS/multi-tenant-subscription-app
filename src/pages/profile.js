@@ -8,34 +8,22 @@ import { AppContext } from "../App";
 import DbApi from "../data/dbApi";
 import Cookies from "js-cookie";
 import { useHistory, useParams } from "react-router-dom";
-import { rolesIdName as RolesIdName } from "../data/roles";
 
-const Profile = ({ onLogOut, ...rest }) => {
-  const usrId = Cookies.get("usrId");
-
-  let { role } = useParams();
-
-  console.log("profile role", role);
-
-  const getCurrentUserById = () => {
-    const currentUser = DbApi.getUserById(usrId);
-    return currentUser;
-  };
-
-  const user = getCurrentUserById();
-
+const Profile = ({ onLogOut, userObj, role, ...rest }) => {
+  const { notifications, messages } = userObj;
   return (
-    user && (
+    userObj && (
       <div id="wrapper">
-        <NavBarSide user={user} />
+        <NavBarSide user={userObj} role={role} />
         <div id="page-wrapper" className="gray-bg">
           <NavBarTop
             onLogOut={onLogOut}
-            notifications={user.notifications}
-            messages={user.messages}
+            notifications={notifications}
+            messages={messages}
+            role={role}
           />
           <PageHeading />
-          <PageContent />
+          <PageContent role={role} />
           <PageFooter />
         </div>
       </div>
@@ -45,23 +33,36 @@ const Profile = ({ onLogOut, ...rest }) => {
 
 Profile.defaultProps = {};
 
-const UserContainer = () => {
-  const usrId = Cookies.get("usrId");
-
+const ProfileContainer = () => {
   const history = useHistory();
+  let { role } = useParams();
+
+  const id = Cookies.get([role]);
+
+  const getCurrentUserById = () => {
+    let currentUser;
+    if (role === "user") {
+      currentUser = DbApi.getUserById(id);
+    } else if (role === "company") {
+      currentUser = DbApi.getCompanyById(id);
+    }
+    return currentUser;
+  };
+
+  const userObj = getCurrentUserById();
 
   useEffect(() => {
-    history.push(`/user/profile/${usrId}`);
+    history.push(`/${role}/profile/${id}`);
   }, []);
 
   return (
     <AppContext.Consumer>
       {(context) => {
-        return <Profile onLogOut={context} />;
+        return <Profile onLogOut={context} userObj={userObj} role={role} />;
       }}
     </AppContext.Consumer>
   );
 };
 
-UserContainer.displayName = "UserContainer";
-export default UserContainer;
+ProfileContainer.displayName = "ProfileContainer";
+export default ProfileContainer;

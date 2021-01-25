@@ -6,20 +6,20 @@ import DbApi from "../data/dbApi";
 
 //Розібратись шоб ініціалізація функцій була перед їх викристанням
 export const PublicRoute = (props) => {
-  const usrId = Cookies.get("usrId");
-  const compId = Cookies.get("compId");
+  const user = Cookies.get("user");
+  const company = Cookies.get("company");
 
   console.log("public route", props);
 
   const getDefaultPath = () => {
     let defaultPath;
-    if (isUser && usrId) {
+    if (isUser && user) {
       defaultPath = roles.filter(
-        (role) => role.id === DbApi.getUserById(usrId).role
+        (role) => role.id === DbApi.getUserById(user).role
       )[0].defaultPath;
-    } else if (isCompany && compId) {
+    } else if (isCompany && company) {
       defaultPath = roles.filter(
-        (role) => role.id === DbApi.getCompanyById(compId).role
+        (role) => role.id === DbApi.getCompanyById(company).role
       )[0].defaultPath;
     }
     return defaultPath;
@@ -50,8 +50,8 @@ export const PublicRoute = (props) => {
   console.log("public route", isCompany, isUser);
 
   const isLogin = () => {
-    if (isUser && usrId) return true;
-    else if (isCompany && compId) return true;
+    if (isUser && user) return true;
+    else if (isCompany && company) return true;
     else return false;
   };
 

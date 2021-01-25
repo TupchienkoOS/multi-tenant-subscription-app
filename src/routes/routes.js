@@ -15,13 +15,13 @@ class Routes extends React.Component {
     return (
       <Router basename="/multi-tenant-subscription-app">
         <Switch>
-          <PublicRoute exact path={["/user/login", "/company/login"]}>
+          <PublicRoute exact path={["/:role/login", "/:role/login"]}>
             <Login onLogin={onLogin} user company />
           </PublicRoute>
-          <PublicRoute exact path={["/user/register", "/company/register"]}>
+          <PublicRoute exact path={["/:role/register", "/:role/register"]}>
             <Register onRegistr={onRegistr} />
           </PublicRoute>
-          <PrivateRoutes path="/" onLogOut={onLogOut} />
+          <PrivateRoutes path="/:role" onLogOut={onLogOut} />
         </Switch>
       </Router>
     );

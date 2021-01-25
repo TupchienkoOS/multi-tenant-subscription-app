@@ -1,7 +1,7 @@
 export const users = [
   {
     id: 1,
-    firstName: "David",
+    name: "David",
     lastName: "Williams",
     role: 1,
     companies: [1, 2],
@@ -30,7 +30,7 @@ export const users = [
   },
   {
     id: 2,
-    firstName: "Bruce",
+    name: "Bruce",
     lastName: "Wayne",
     role: 1,
     login: "test1@.com.ua",

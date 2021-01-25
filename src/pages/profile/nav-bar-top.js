@@ -1,44 +1,26 @@
 import React from "react";
-import { useRouteMatch } from "react-router-dom";
-import { rolesIdName as RolesIdName } from "../../data/roles";
 
-export const NavBarTop = ({ onLogOut, notifications, messages }) => {
-  let isUserMatch = useRouteMatch({
-    path: "/user",
-    strict: true,
-    sensitive: true,
-  });
-
-  let isCompanyMatch = useRouteMatch({
-    path: "/company",
-    strict: true,
-    sensitive: true,
-  });
-
-  const getLogOutFor = () => {
-    if (isUserMatch) {
-      return RolesIdName["user"];
-    } else if (isCompanyMatch) {
-      return RolesIdName["company"];
+export const NavBarTop = ({ onLogOut, notifications, messages, role }) => {
+  const getNumberMessages = () => {
+    if (typeof messages !== "undefined") {
+      const msgCnt = Object.keys(messages).length;
+      return msgCnt !== 0 ? (
+        <div>
+          <span className="label label-primary">{msgCnt}</span>
+        </div>
+      ) : null;
     }
   };
 
-  const getNumberMessages = () => {
-    const msgCnt = Object.keys(messages).length;
-    return msgCnt !== 0 ? (
-      <div>
-        <span className="label label-primary">{msgCnt}</span>
-      </div>
-    ) : null;
-  };
-
   const getNumberNotifications = () => {
-    const notifCnt = Object.keys(notifications).length;
-    return notifCnt !== 0 ? (
-      <div>
-        <span className="label label-primary">{notifCnt}</span>
-      </div>
-    ) : null;
+    if (typeof notifications !== "undefined") {
+      const notifCnt = Object.keys(notifications).length;
+      return notifCnt !== 0 ? (
+        <div>
+          <span className="label label-primary">{notifCnt}</span>
+        </div>
+      ) : null;
+    }
   };
 
   return (
@@ -211,7 +193,7 @@ export const NavBarTop = ({ onLogOut, notifications, messages }) => {
           </li>
 
           <li>
-            <a onClick={() => onLogOut(getLogOutFor())}>
+            <a onClick={() => onLogOut(role)}>
               <i className="fa fa-sign-out"></i> Log out
             </a>
           </li>

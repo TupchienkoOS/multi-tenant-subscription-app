@@ -11,7 +11,7 @@ export const CompaniesList = ({
 }) => {
   return (
     <tbody>
-      {DbApi.getUserCompanies(+Cookies.get("usrId")).map((company) => {
+      {DbApi.getUserCompanies(+Cookies.get("user")).map((company) => {
         const path = `/company/profile/${company.id}`;
         return (
           <tr

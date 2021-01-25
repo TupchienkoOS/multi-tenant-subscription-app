@@ -33,13 +33,14 @@ class App extends React.Component {
   }
 
   onLogOut = (param) => {
+    debugger;
     console.log(param, "logout");
     // event.preventDefault();
-    if (param === RolesIdName["user"]) {
-      Cookies.remove("usrId");
+    if (param === "user") {
+      Cookies.remove("user");
       this.setState({ user: false });
-    } else if (param === RolesIdName["company"]) {
-      Cookies.remove("compId");
+    } else if (param === "company") {
+      Cookies.remove("company");
       this.setState({ company: false });
     }
   };
@@ -53,10 +54,10 @@ class App extends React.Component {
     const currentUser = DbApi.getUserByLogin(loginUser);
     if (typeof currentUser !== "undefined") {
       if (currentUser.role === RolesIdName["user"]) {
-        Cookies.set("usrId", currentUser.id);
+        Cookies.set("user", currentUser.id);
         this.setState({ user: currentUser });
       } else if (currentUser.role === RolesIdName["company"]) {
-        Cookies.set("compId", currentUser.id);
+        Cookies.set("company", currentUser.id);
         this.setState({ company: currentUser });
       }
     } else {
