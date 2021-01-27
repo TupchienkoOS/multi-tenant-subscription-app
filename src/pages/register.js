@@ -3,6 +3,8 @@ import { InputField } from "../input-field";
 import { CheckBox } from "../check-box";
 import { Button } from "../button";
 import { Link } from "react-router-dom";
+import DbApi from "../data/dbApi";
+import { withRouter } from "react-router";
 
 class Register extends React.Component {
   constructor(props) {
@@ -16,6 +18,7 @@ class Register extends React.Component {
       },
       hover: { termsNPolicy: false },
     };
+    console.log(props);
   }
   componentDidUpdate() {
     console.log("didupdate register");
@@ -46,12 +49,15 @@ class Register extends React.Component {
     });
   };
 
-  onSubmit = () => {};
-  onLogin = () => {};
+  onSubmit = () => (event) => {
+    event.preventDefault();
+    DbApi.registerUser(this.state.values);
+    this.props.history.push("/user/login");
+  };
 
   render() {
     const { name, email, password, termsNPolicy } = this.state.values;
-    const { onSubmit, onLogin } = this;
+
     return (
       <div>
         <div className="middle-box text-center loginscreen   animated fadeInDown">
@@ -103,13 +109,13 @@ class Register extends React.Component {
                 type="submit"
                 className="btn btn-primary block full-width m-b"
                 label="Register"
-                onSubmit={onSubmit}
+                onClick={this.onSubmit()}
               />
               <p className="text-muted text-center">
                 <small>Already have an account?</small>
               </p>
               <span className="btn btn-sm btn-white btn-block">
-                <Link to={"/login"}>Login</Link>
+                <Link to={"/user/login"}>Login</Link>
               </span>
             </form>
             <p className="m-t">
@@ -124,4 +130,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+export default withRouter(Register);

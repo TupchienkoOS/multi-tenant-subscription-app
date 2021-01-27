@@ -3,6 +3,7 @@ import { InputField } from "../input-field";
 import { Button } from "../button";
 import { Link, matchPath } from "react-router-dom";
 import { rolesIdName } from "../data/roles";
+import { withRouter } from "react-router";
 
 class Login extends React.Component {
   constructor(props) {
@@ -110,7 +111,7 @@ class Login extends React.Component {
                 <small>Do not have an account?</small>
               </p>
               <span className="btn btn-sm btn-white btn-block">
-                <Link to={"/register"}>Create an account</Link>
+                <Link to={"/user/register"}>Create an account</Link>
               </span>
             </form>
             <p className="m-t">
@@ -126,4 +127,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

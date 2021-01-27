@@ -10,7 +10,6 @@ import Cookies from "js-cookie";
 import { useHistory, useParams } from "react-router-dom";
 
 const Profile = ({ onLogOut, userObj, role, ...rest }) => {
-  const { notifications, messages } = userObj;
   return (
     userObj && (
       <div id="wrapper">
@@ -18,8 +17,8 @@ const Profile = ({ onLogOut, userObj, role, ...rest }) => {
         <div id="page-wrapper" className="gray-bg">
           <NavBarTop
             onLogOut={onLogOut}
-            notifications={notifications}
-            messages={messages}
+            notifications={userObj.notifications}
+            messages={userObj.messages}
             role={role}
           />
           <PageHeading />
@@ -40,6 +39,7 @@ const ProfileContainer = () => {
   const id = Cookies.get([role]);
 
   const getCurrentUserById = () => {
+    debugger;
     let currentUser;
     if (role === "user") {
       currentUser = DbApi.getUserById(id);
