@@ -1,7 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, withRouter } from "react-router-dom";
 import Routes from "./routes/routes";
-import { users } from "./data/users";
 import Cookies from "js-cookie";
 import { v4 } from "uuid";
 import { NotificationContext } from "./notification-provider";
@@ -33,7 +31,6 @@ class App extends React.Component {
   }
 
   onLogOut = (param) => {
-    debugger;
     console.log(param, "logout");
     // event.preventDefault();
     if (param === "user") {
