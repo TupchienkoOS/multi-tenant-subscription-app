@@ -7,26 +7,26 @@ import { PageFooter } from "./profile/page-footer";
 import { AppContext } from "../App";
 import DbApi from "../data/dbApi";
 import Cookies from "js-cookie";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Redirect } from "react-router-dom";
 
 const Profile = ({ onLogOut, userObj, role, ...rest }) => {
-  return (
-    userObj && (
-      <div id="wrapper">
-        <NavBarSide user={userObj} role={role} />
-        <div id="page-wrapper" className="gray-bg">
-          <NavBarTop
-            onLogOut={onLogOut}
-            notifications={userObj.notifications}
-            messages={userObj.messages}
-            role={role}
-          />
-          <PageHeading />
-          <PageContent role={role} />
-          <PageFooter />
-        </div>
+  return userObj ? (
+    <div id="wrapper">
+      <NavBarSide user={userObj} role={role} />
+      <div id="page-wrapper" className="gray-bg">
+        <NavBarTop
+          onLogOut={onLogOut}
+          notifications={userObj.notifications}
+          messages={userObj.messages}
+          role={role}
+        />
+        <PageHeading />
+        <PageContent role={role} />
+        <PageFooter />
       </div>
-    )
+    </div>
+  ) : (
+    <Redirect to="/nomatch" />
   );
 };
 
