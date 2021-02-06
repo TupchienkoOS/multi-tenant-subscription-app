@@ -23,7 +23,6 @@ export const PrivateRoutes = ({ children, ...rest }) => {
     else if (role === "company" && company) return true;
     else return false;
   };
-
   const role = rest.computedMatch.params.role;
   const privateRoutes = [
     {

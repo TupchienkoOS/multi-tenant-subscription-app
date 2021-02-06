@@ -1,8 +1,70 @@
 import React, { Component } from "react";
-import { users } from "./users";
-import { companies } from "./companies";
+import Cookies from "js-cookie";
+// import { companies } from "./companies";
+
+let companies = JSON.parse(localStorage.getItem("companies"));
+let users = JSON.parse(localStorage.getItem("users"));
 
 export default class DbApi extends Component {
+  constructor() {
+    super();
+    console.log("DbApi ctor");
+    this.state = { users: [], companies: [] };
+  }
+
+  shouldComponentUpdate() {
+    console.log("DbApi shouldComponentUpdate");
+  }
+
+  componentDidMount() {
+    console.log("DbApi componentDidMount");
+    this.setState({
+      users: JSON.parse(localStorage.getItem("users")),
+      // companies: JSON.parse(localStorage.getItem("companies")),
+    });
+  }
+
+  static getCurrentUserId = () => {
+    return Cookies.get(["user"]);
+  };
+
+  static updateCompanies = () => {
+    localStorage.companies = JSON.stringify(companies);
+    //this.setState({ companies: JSON.stringify(companies) });
+  };
+
+  static updateUsers() {
+    localStorage.users = JSON.stringify(users);
+    //this.setState({ users: JSON.stringify(users) });
+  }
+
+  static deleteCompanyOwner = (compId) => {
+    const currentUserID = this.getCurrentUserId();
+
+    const changedUsers = users.map((user) => {
+      if (user.id === +currentUserID) {
+        const changedCompanies = user.companies.filter(
+          (companiesId) => companiesId !== compId
+        );
+        user.companies = changedCompanies;
+      }
+      return user;
+    });
+    users = changedUsers;
+    this.updateUsers();
+  };
+
+  static registerCompany = (company) => {
+    companies.push({
+      id: companies.length + 1,
+      role: company.role,
+      name: company.name,
+      login: company.email,
+    });
+    console.log("company registered", companies);
+    this.updateCompanies();
+  };
+
   static registerUser = (user) => {
     users.push({
       id: users.length + 1,
@@ -15,6 +77,7 @@ export default class DbApi extends Component {
       avatarSmall: "",
     });
     console.log("registeUser", users);
+    this.updateUsers();
   };
 
   static getUserByLogin = (loginUser) => {
@@ -44,13 +107,12 @@ export default class DbApi extends Component {
     return currentUser;
   };
 
-  static getUserCompanies = (userId) => {
-    debugger;
+  static getUserCompanies = (userCompIds) => {
     let userCompanies;
-    const userCompIds = users.filter((user) => user.id === userId)[0].companies;
-    if (userCompIds.length !== 0) {
+
+    if (typeof userCompIds !== "undefined") {
       userCompanies = companies.filter((company) =>
-        userCompIds.filter((companyId) => companyId === company.id)
+        userCompIds.includes(company.id)
       );
     } else {
       userCompanies = [];

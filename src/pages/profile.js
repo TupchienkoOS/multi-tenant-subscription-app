@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { NavBarSide } from "./profile/nav-bar-side";
 import { NavBarTop } from "./profile/nav-bar-top";
 import { PageHeading } from "./profile/page-heading";
-import { PageContent } from "./profile/page-content";
+import PageContent from "./profile/page-content";
 import { PageFooter } from "./profile/page-footer";
 import { AppContext } from "../App";
 import DbApi from "../data/dbApi";
@@ -21,7 +21,7 @@ const Profile = ({ onLogOut, userObj, role, ...rest }) => {
           role={role}
         />
         <PageHeading />
-        <PageContent role={role} />
+        <PageContent role={role} user={userObj} />
         <PageFooter />
       </div>
     </div>
@@ -39,7 +39,6 @@ const ProfileContainer = () => {
   const id = Cookies.get([role]);
 
   const getCurrentUserById = () => {
-    debugger;
     let currentUser;
     if (role === "user") {
       currentUser = DbApi.getUserById(id);

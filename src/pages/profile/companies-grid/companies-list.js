@@ -1,24 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import DbApi from "../../../data/dbApi";
-import Cookies from "js-cookie";
+import { Link, useHistory } from "react-router-dom";
 
 export const CompaniesList = ({
   companies,
   onMouseEnter,
   onMouseLeave,
-  handleOnClick,
+  deleteCompanyOwner,
 }) => {
+  let history = useHistory();
+  const handleOnClick = (compId) => (e) => {
+    console.log(e.currentTarget.id, compId);
+    history.push(`/company/profile/${compId}`);
+  };
   return (
     <tbody>
-      {DbApi.getUserCompanies(+Cookies.get("user")).map((company) => {
+      {companies.map((company) => {
         const path = `/company/profile/${company.id}`;
         return (
           <tr
             key={company.id}
             id={company.id}
             className="footable-even"
-            onClick={(e) => handleOnClick(e)}
+            onClick={handleOnClick(company.id)}
           >
             <td className="footable-visible footable-first-column">
               <span className="footable-toggle"></span>
@@ -33,6 +36,12 @@ export const CompaniesList = ({
               <div className="btn-group">
                 <button className="btn-white btn btn-xs">View</button>
                 <button className="btn-white btn btn-xs">Edit</button>
+                <button
+                  className="btn-white btn btn-xs"
+                  onClick={deleteCompanyOwner(company.id)}
+                >
+                  Delete
+                </button>
               </div>
             </td>
           </tr>
