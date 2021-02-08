@@ -1,14 +1,19 @@
 import React from "react";
 import CompaniesGrid from "./companies-grid/companies-grid";
 import AddCompWizard from "../add-comp-wiz/add-comp-wiz";
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Modal, ModalBody } from "reactstrap";
 import DbApi from "../../data/dbApi";
-import { WizardTitle } from "../add-comp-wiz/wizard-title";
+import { SpinnerComp } from "../../spinner";
 
 class PageContent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { showAddCompWiz: false, companies: [] };
+    this.state = {
+      showAddCompWiz: false,
+      companies: [],
+      isLoading: false,
+      error: "",
+    };
   }
 
   componentDidMount() {
@@ -17,7 +22,14 @@ class PageContent extends React.Component {
     });
   }
 
-  addCompany = (company) => (event) => {
+  addCompany = (company) => async (event) => {
+    try {
+      await DbApi.addCompany(company);
+    } catch (err) {
+      console.log(err);
+      this.setState({ error: "Unable to add company." });
+    }
+    this.setState({ isLoading: true });
     const companies = this.state.companies;
     companies.push({
       id: companies.length + 1,
@@ -25,13 +37,15 @@ class PageContent extends React.Component {
       name: company.name,
       login: company.email,
     });
-    this.setState({ companies, showAddCompWiz: false });
+    this.setState({ companies, showAddCompWiz: false, isLoading: false });
   };
 
-  deleteCompanyOwner = (id) => async (event) => {
+  deleteCompanyHandle = (id) => async (event) => {
     event.stopPropagation();
+
+    this.setState({ isLoading: true });
     try {
-      await DbApi.deleteCompanyOwner(id);
+      await DbApi.deleteCompany(id);
       let companies = this.state.companies;
       companies = companies.filter((comp) => comp.id !== id);
 
@@ -40,6 +54,7 @@ class PageContent extends React.Component {
       console.log(err);
       this.setState({ error: "Unable to delete company." });
     }
+    this.setState({ isLoading: false });
   };
 
   toggleModal = () => {
@@ -51,24 +66,28 @@ class PageContent extends React.Component {
     const { role, user } = this.props;
     return role === "user" ? (
       <div className="wrapper wrapper-content">
-        <div className="wrapper wrapper-content animated fadeInRight ecommerce">
-          <CompaniesGrid
-            user={user}
-            showWiz={this.toggleModal}
-            companies={this.state.companies}
-            deleteCompanyOwner={this.deleteCompanyOwner}
-          />
-          <Modal
-            isOpen={this.state.showAddCompWiz}
-            toggle={this.toggleModal}
-            backdropClassName={"modal-backdrop show"}
-            zIndex={2050}
-          >
-            <ModalBody>
-              <AddCompWizard addCompany={this.addCompany} />
-            </ModalBody>
-          </Modal>
-        </div>
+        {this.state.isLoading ? (
+          <SpinnerComp />
+        ) : (
+          <div className="wrapper wrapper-content animated fadeInRight ecommerce">
+            <CompaniesGrid
+              user={user}
+              showWiz={this.toggleModal}
+              companies={this.state.companies}
+              deleteCompany={this.deleteCompanyHandle}
+            />
+            <Modal
+              isOpen={this.state.showAddCompWiz}
+              toggle={this.toggleModal}
+              backdropClassName={"modal-backdrop show"}
+              zIndex={2050}
+            >
+              <ModalBody>
+                <AddCompWizard addCompany={this.addCompany} />
+              </ModalBody>
+            </Modal>
+          </div>
+        )}
       </div>
     ) : (
       <div>Company</div>

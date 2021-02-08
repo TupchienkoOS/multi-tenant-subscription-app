@@ -38,7 +38,12 @@ export default class DbApi extends Component {
     //this.setState({ users: JSON.stringify(users) });
   }
 
-  static deleteCompanyOwner = async (compId) => {
+  static addCompany = async (company) => {
+    return await Promise.resolve();
+  };
+
+  static deleteCompany = async (compId) => {
+    // await new Promise((r) => setTimeout(r, 1000));
     const currentUserID = this.getCurrentUserId();
 
     const changedUsers = users.map((user) => {

@@ -9,6 +9,7 @@ class CompaniesGrid extends React.Component {
   }
 
   render() {
+    const { deleteCompany, showWiz, companies } = this.props;
     return (
       <div className="row">
         <div className="col-lg-12">
@@ -17,7 +18,7 @@ class CompaniesGrid extends React.Component {
               <h5>Companies Table </h5>
               <div className="ibox-tools">
                 <a className="collapse-link">
-                  <i className="fa fa-plus" onClick={this.props.showWiz}></i>
+                  <i className="fa fa-plus" onClick={showWiz}></i>
                 </a>
                 <a className="dropdown-toggle" data-toggle="dropdown" href="#">
                   <i className="fa fa-wrench"></i>
@@ -41,10 +42,10 @@ class CompaniesGrid extends React.Component {
             </div>
             <div className="ibox-content">
               <table className="table table-hover" data-page-size="15">
-                <CompaniesHead showWiz={this.props.showWiz} />
+                <CompaniesHead showWiz={showWiz} />
                 <CompaniesList
-                  companies={this.props.companies}
-                  deleteCompanyOwner={this.props.deleteCompanyOwner}
+                  companies={companies}
+                  deleteCompany={deleteCompany}
                 />
                 <CompaniesPagination />
               </table>

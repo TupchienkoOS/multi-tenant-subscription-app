@@ -5,7 +5,7 @@ export const CompaniesList = ({
   companies,
   onMouseEnter,
   onMouseLeave,
-  deleteCompanyOwner,
+  deleteCompany,
 }) => {
   let history = useHistory();
   const handleOnClick = (compId) => (e) => {
@@ -38,7 +38,7 @@ export const CompaniesList = ({
                 <button className="btn-white btn btn-xs">Edit</button>
                 <button
                   className="btn-white btn btn-xs"
-                  onClick={deleteCompanyOwner(company.id)}
+                  onClick={deleteCompany(company.id)}
                 >
                   Delete
                 </button>
