@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Register from "../pages/register";
 import Login from "../pages/login";
 import { PrivateRoutes } from "./private-route";
@@ -14,6 +19,9 @@ class Routes extends React.Component {
     const { user, onLogin, onLogOut, onRegistr, company } = this.props;
     return (
       <Router basename="/multi-tenant-subscription-app">
+        <Route exact path={"/"}>
+          <Redirect to={"/user"} />
+        </Route>
         <Switch>
           <PublicRoute exact path={["/:role/login", "/:role/login"]}>
             <Login onLogin={onLogin} user company />
@@ -21,7 +29,10 @@ class Routes extends React.Component {
           <PublicRoute exact path={["/:role/register", "/:role/register"]}>
             <Register onRegistr={onRegistr} />
           </PublicRoute>
-          <PrivateRoutes path="/:role" onLogOut={onLogOut} />
+          <PrivateRoutes
+            path={["/:role/:page/:id", "/:role/:page", "/:role"]}
+            onLogOut={onLogOut}
+          />
         </Switch>
       </Router>
     );
