@@ -38,7 +38,7 @@ export default class DbApi extends Component {
     //this.setState({ users: JSON.stringify(users) });
   }
 
-  static deleteCompanyOwner = (compId) => {
+  static deleteCompanyOwner = async (compId) => {
     const currentUserID = this.getCurrentUserId();
 
     const changedUsers = users.map((user) => {
@@ -52,6 +52,7 @@ export default class DbApi extends Component {
     });
     users = changedUsers;
     this.updateUsers();
+    return await Promise.resolve();
   };
 
   static registerCompany = (company) => {

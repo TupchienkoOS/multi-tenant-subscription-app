@@ -28,13 +28,18 @@ class PageContent extends React.Component {
     this.setState({ companies, showAddCompWiz: false });
   };
 
-  deleteCompanyOwner = (id) => (event) => {
-    let companies = this.state.companies;
-    companies = companies.filter((comp) => comp.id !== id);
+  deleteCompanyOwner = (id) => async (event) => {
+    event.stopPropagation();
+    try {
+      await DbApi.deleteCompanyOwner(id);
+      let companies = this.state.companies;
+      companies = companies.filter((comp) => comp.id !== id);
 
-    this.setState({ companies });
-
-    DbApi.deleteCompanyOwner(id);
+      this.setState({ companies });
+    } catch (err) {
+      console.log(err);
+      this.setState({ error: "Unable to delete company." });
+    }
   };
 
   toggleModal = () => {
