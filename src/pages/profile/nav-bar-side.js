@@ -1,15 +1,16 @@
 import React from "react";
 import { SideBarItems } from "./side-bar-items";
-import { roles } from "../../data/roles";
 //import avatarSmall from "../img/profile_small.jpg";
 const sideBarItems = [
-  { id: 1, name: "PROFILE" },
+  { id: 1, name: "YOUR COMPANIES" },
   { id: 2, name: "COMPANIES" },
 ];
+
 const subItems = [
   { id: 1, name: "TEST1", itemId: 1 },
   { id: 2, name: "TEST2", itemId: 2 },
 ];
+
 export const NavBarSide = ({ user, role }) => {
   const { firstName, lastName, name, avatarSmall } = user;
 
@@ -22,7 +23,7 @@ export const NavBarSide = ({ user, role }) => {
               <img
                 alt="profile-icon"
                 className="rounded-circle"
-                src={avatarSmall}
+                src={require(`../../img/${avatarSmall}`).default}
               />
               <span data-toggle="dropdown" className="dropdown-toggle" href="#">
                 <span className="block m-t-xs font-bold">
