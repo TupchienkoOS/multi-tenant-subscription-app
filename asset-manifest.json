@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/multi-tenant-subscription-app/static/css/main.dc47a391.chunk.css",
-    "main.js": "/multi-tenant-subscription-app/static/js/main.5a8b559a.chunk.js",
-    "main.js.map": "/multi-tenant-subscription-app/static/js/main.5a8b559a.chunk.js.map",
-    "runtime-main.js": "/multi-tenant-subscription-app/static/js/runtime-main.c9ddd861.js",
-    "runtime-main.js.map": "/multi-tenant-subscription-app/static/js/runtime-main.c9ddd861.js.map",
-    "static/js/2.d27be33b.chunk.js": "/multi-tenant-subscription-app/static/js/2.d27be33b.chunk.js",
-    "static/js/2.d27be33b.chunk.js.map": "/multi-tenant-subscription-app/static/js/2.d27be33b.chunk.js.map",
-    "static/js/3.2ab707fa.chunk.js": "/multi-tenant-subscription-app/static/js/3.2ab707fa.chunk.js",
-    "static/js/3.2ab707fa.chunk.js.map": "/multi-tenant-subscription-app/static/js/3.2ab707fa.chunk.js.map",
+    "main.css": "/multi-tenant-subscription-app/static/css/main.6f81e388.chunk.css",
+    "main.js": "/multi-tenant-subscription-app/static/js/main.bced2b0a.chunk.js",
+    "main.js.map": "/multi-tenant-subscription-app/static/js/main.bced2b0a.chunk.js.map",
+    "runtime-main.js": "/multi-tenant-subscription-app/static/js/runtime-main.9e1a81ab.js",
+    "runtime-main.js.map": "/multi-tenant-subscription-app/static/js/runtime-main.9e1a81ab.js.map",
+    "static/js/2.38b86561.chunk.js": "/multi-tenant-subscription-app/static/js/2.38b86561.chunk.js",
+    "static/js/2.38b86561.chunk.js.map": "/multi-tenant-subscription-app/static/js/2.38b86561.chunk.js.map",
+    "static/js/3.72f4002d.chunk.js": "/multi-tenant-subscription-app/static/js/3.72f4002d.chunk.js",
+    "static/js/3.72f4002d.chunk.js.map": "/multi-tenant-subscription-app/static/js/3.72f4002d.chunk.js.map",
     "index.html": "/multi-tenant-subscription-app/index.html",
-    "static/css/main.dc47a391.chunk.css.map": "/multi-tenant-subscription-app/static/css/main.dc47a391.chunk.css.map",
-    "static/js/2.d27be33b.chunk.js.LICENSE.txt": "/multi-tenant-subscription-app/static/js/2.d27be33b.chunk.js.LICENSE.txt",
+    "static/css/main.6f81e388.chunk.css.map": "/multi-tenant-subscription-app/static/css/main.6f81e388.chunk.css.map",
+    "static/js/2.38b86561.chunk.js.LICENSE.txt": "/multi-tenant-subscription-app/static/js/2.38b86561.chunk.js.LICENSE.txt",
     "static/media/App.css": "/multi-tenant-subscription-app/static/media/word_map.59621c9b.png",
     "static/media/font-awesome.css": "/multi-tenant-subscription-app/static/media/fontawesome-webfont.f691f37e.woff",
-    "static/media/profile_small.f34d837c.jpg": "/multi-tenant-subscription-app/static/media/profile_small.f34d837c.jpg"
+    "static/media/footable.core.css": "/multi-tenant-subscription-app/static/media/footable.c7a12ae3.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.c9ddd861.js",
-    "static/js/2.d27be33b.chunk.js",
-    "static/css/main.dc47a391.chunk.css",
-    "static/js/main.5a8b559a.chunk.js"
+    "static/js/runtime-main.9e1a81ab.js",
+    "static/js/2.38b86561.chunk.js",
+    "static/css/main.6f81e388.chunk.css",
+    "static/js/main.bced2b0a.chunk.js"
   ]
 }
