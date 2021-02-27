@@ -1,6 +1,7 @@
 import React from "react";
 import { SideBarItems } from "./side-bar-items";
-//import avatarSmall from "../img/profile_small.jpg";
+import { Link } from "react-router-dom";
+
 const sideBarItems = [
   { id: 1, name: "YOUR COMPANIES" },
   { id: 2, name: "COMPANIES" },
@@ -20,11 +21,13 @@ export const NavBarSide = ({ user, role }) => {
         <ul className="nav metismenu" id="side-menu">
           <li className="nav-header">
             <div className="dropdown profile-element">
-              <img
-                alt="profile-icon"
-                className="rounded-circle"
-                src={require(`../../img/${avatarSmall}`).default}
-              />
+              <Link to={`/${role}/profile/${user.id}`}>
+                <img
+                  alt="profile-icon"
+                  className="avatar-small"
+                  src={require(`../../img/${avatarSmall}`).default}
+                />
+              </Link>
               <span data-toggle="dropdown" className="dropdown-toggle" href="#">
                 <span className="block m-t-xs font-bold">
                   {name + " " + (lastName || "")}

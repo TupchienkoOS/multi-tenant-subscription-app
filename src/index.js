@@ -5,6 +5,7 @@ import "./css/bootstrap.min.css";
 import "./font-awesome/css/font-awesome.css";
 import "./css/plugins/iCheck/custom.css";
 import "./css/animate.css";
+import "./css/custom.css";
 import "./css/plugins/footable/footable.core.css";
 import "./css/plugins/steps/jquery.steps.css";
 import "./App.css";

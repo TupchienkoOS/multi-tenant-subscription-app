@@ -1,7 +1,7 @@
 import React from "react";
-import { Route, Redirect, Switch, useParams } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 import Cookies from "js-cookie";
-import ProfileContainer from "../pages/profile";
+import PageContainer from "../pages/page";
 import { NoMatch } from "../no-match";
 
 export const PrivateRoutes = ({ children, ...rest }) => {
@@ -22,14 +22,15 @@ export const PrivateRoutes = ({ children, ...rest }) => {
     if (role === "user" && user) return true;
     else if (role === "company" && company) return true;
     else return false;
+    //Додати перевірку чи id компанії сбігається з id компанії яка залогінена
   };
   const role = rest.computedMatch.params.role;
   const privateRoutes = [
     {
       loginPath: `/${role}/login`,
-      path: ["/:role/", "/:role/profile", "/:role/profile/:id"],
+      path: ["/:role/", "/:role/:page", "/:role/:page/:id"],
       exact: true,
-      component: <ProfileContainer />,
+      component: <PageContainer />,
     },
   ];
 
