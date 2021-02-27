@@ -1,5 +1,5 @@
 import React from "react";
-import CompaniesGrid from "./profile/companies-grid/companies-grid";
+import CompaniesGrid from "./companies/companies-grid/companies-grid";
 import AddCompWizard from "../pages/add-comp-wiz/add-comp-wiz";
 import { Modal, ModalBody } from "reactstrap";
 import DbApi from "./../data/dbApi";
@@ -94,4 +94,5 @@ class Companies extends React.Component {
     );
   }
 }
+Companies.displayName = "Companies";
 export default Companies;

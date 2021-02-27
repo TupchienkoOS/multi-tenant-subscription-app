@@ -1,16 +1,19 @@
 import React, { useEffect } from "react";
-import { NavBarSide } from "./profile/nav-bar-side";
-import { NavBarTop } from "./profile/nav-bar-top";
-import { PageHeading } from "./profile/page-heading";
-import { PageContent } from "./profile/page-content";
-import { PageFooter } from "./profile/page-footer";
+import { NavBarSide } from "./main-page/nav-bar-side";
+import { NavBarTop } from "./main-page/nav-bar-top";
+import { PageHeading } from "./main-page/page-heading";
+import { PageContent } from "./main-page/page-content";
+import { PageFooter } from "./main-page/page-footer";
 import { AppContext } from "../App";
 import DbApi from "../data/dbApi";
 import Cookies from "js-cookie";
+import { pages } from "../data/pages";
 import { useHistory, useParams, Redirect } from "react-router-dom";
 
 //prevent navbarside rerender if no need
-const Page = ({ onLogOut, userObj, role, ...rest }) => {
+const Page = ({ onLogOut, userObj, role, page, ...rest }) => {
+  const Component = pages[page] || pages["nosuchpage"];
+
   return userObj ? (
     <div id="wrapper">
       <NavBarSide user={userObj} role={role} />
@@ -21,8 +24,8 @@ const Page = ({ onLogOut, userObj, role, ...rest }) => {
           messages={userObj.messages}
           role={role}
         />
-        <PageHeading />
-        <PageContent role={role} user={userObj} />
+        <PageHeading displayHeading={Component.displayName} />
+        <PageContent role={role} user={userObj} Component={Component} />
         <PageFooter />
       </div>
     </div>
@@ -58,7 +61,9 @@ const PageContainer = () => {
   return (
     <AppContext.Consumer>
       {(context) => {
-        return <Page onLogOut={context} userObj={userObj} role={role} />;
+        return (
+          <Page onLogOut={context} userObj={userObj} role={role} page={page} />
+        );
       }}
     </AppContext.Consumer>
   );
