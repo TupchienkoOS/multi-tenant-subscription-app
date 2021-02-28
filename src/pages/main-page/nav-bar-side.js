@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { SideBarItems } from "./side-bar-items";
 import { Link } from "react-router-dom";
 
@@ -14,6 +14,12 @@ const subItems = [
 
 export const NavBarSide = ({ user, role }) => {
   const { firstName, lastName, name, avatarSmall } = user;
+
+  const [toggleState, setToggleState] = useState();
+
+  const toggle = () => {
+    setToggleState(toggleState === "show" ? "" : "show");
+  };
 
   return (
     <nav className="navbar-default navbar-static-side" role="navigation">
@@ -32,12 +38,17 @@ export const NavBarSide = ({ user, role }) => {
                 <span className="block m-t-xs font-bold">
                   {name + " " + (lastName || "")}
                 </span>
-                <span className="text-muted text-xs block">
+                <span
+                  className="text-muted text-xs block"
+                  onClick={() => toggle()}
+                >
                   {role}
                   <b className="caret"></b>
                 </span>
               </span>
-              <ul className="dropdown-menu animated fadeInRight m-t-xs">
+              <ul
+                className={`dropdown-menu animated fadeInRight m-t-xs ${toggleState}`}
+              >
                 <li>
                   <a className="dropdown-item" href="profile.html">
                     Profile
