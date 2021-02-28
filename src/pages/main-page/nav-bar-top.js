@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 export const NavBarTop = ({ onLogOut, notifications, messages, role }) => {
+  const [sideManeState, setSideMenuState] = useState("");
+
+  const togleSideMenu = () => {
+    setSideMenuState(sideManeState === "" ? "mini-navbar" : "");
+  };
+
+  useEffect(() => {
+    document.body.className = `pace-done ${sideManeState}`;
+  });
+
   const getNumberMessages = () => {
     if (typeof messages !== "undefined") {
       const msgCnt = Object.keys(messages).length;
@@ -31,6 +41,7 @@ export const NavBarTop = ({ onLogOut, notifications, messages, role }) => {
           <a
             className="navbar-minimalize minimalize-styl-2 btn btn-primary "
             href="#"
+            onClick={() => togleSideMenu()}
           >
             <i className="fa fa-bars"></i>{" "}
           </a>
