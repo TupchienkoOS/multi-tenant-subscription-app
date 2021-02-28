@@ -12,6 +12,13 @@ const subItems = [
   { id: 2, name: "TEST2", itemId: 2 },
 ];
 
+const dropdownMenuItems = [
+  { name: "Profile", page: "profile" },
+  { name: "Contacts", page: "contacts" },
+  { name: "Mailbox", page: "mailbox" },
+  { name: "Logout", page: "logout" },
+];
+
 export const NavBarSide = ({ user, role }) => {
   const { firstName, lastName, name, avatarSmall } = user;
 
@@ -49,27 +56,15 @@ export const NavBarSide = ({ user, role }) => {
               <ul
                 className={`dropdown-menu animated fadeInRight m-t-xs ${toggleState}`}
               >
-                <li>
-                  <a className="dropdown-item" href="profile.html">
-                    Profile
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="contacts.html">
-                    Contacts
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="mailbox.html">
-                    Mailbox
-                  </a>
-                </li>
-                <li className="dropdown-divider"></li>
-                <li>
-                  <a className="dropdown-item" href="login.html">
-                    Logout
-                  </a>
-                </li>
+                {dropdownMenuItems.map((item) => {
+                  return (
+                    <li>
+                      <Link to={`/${role}/${item.page}/${user.id}`}>
+                        <a className="dropdown-item">{item.name}</a>
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
             <div className="logo-element">IN+</div>
