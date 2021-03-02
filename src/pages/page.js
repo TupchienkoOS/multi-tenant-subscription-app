@@ -8,13 +8,13 @@ import { AppContext } from "../App";
 import DbApi from "../data/dbApi";
 import Cookies from "js-cookie";
 import { pages } from "../data/pages";
-import { useHistory, useParams, Redirect } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 //prevent navbarside rerender if no need
 const Page = ({ onLogOut, userObj, role, page, ...rest }) => {
   const Component = pages[page] || pages["nosuchpage"];
 
-  return userObj ? (
+  return (
     <div id="wrapper">
       <NavBarSide user={userObj} role={role} />
       <div id="page-wrapper" className="gray-bg">
@@ -29,8 +29,6 @@ const Page = ({ onLogOut, userObj, role, page, ...rest }) => {
         <PageFooter />
       </div>
     </div>
-  ) : (
-    <Redirect to="/nomatch" />
   );
 };
 

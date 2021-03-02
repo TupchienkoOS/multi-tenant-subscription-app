@@ -13,14 +13,14 @@ const subItems = [
 ];
 
 const dropdownMenuItems = [
-  { name: "Profile", page: "profile" },
-  { name: "Contacts", page: "contacts" },
-  { name: "Mailbox", page: "mailbox" },
-  { name: "Logout", page: "logout" },
+  { id: 1, name: "Profile", page: "profile" },
+  { id: 2, name: "Contacts", page: "contacts" },
+  { id: 3, name: "Mailbox", page: "mailbox" },
+  { id: 4, name: "Logout", page: "logout" },
 ];
 
 export const NavBarSide = ({ user, role }) => {
-  const { firstName, lastName, name, avatarSmall } = user;
+  const { lastName, name, avatarSmall } = user;
 
   const [toggleState, setToggleState] = useState();
 
@@ -41,7 +41,7 @@ export const NavBarSide = ({ user, role }) => {
                   src={require(`../../img/${avatarSmall}`).default}
                 />
               </Link>
-              <span data-toggle="dropdown" className="dropdown-toggle" href="#">
+              <span data-toggle="dropdown" className="dropdown-toggle">
                 <span className="block m-t-xs font-bold">
                   {name + " " + (lastName || "")}
                 </span>
@@ -58,9 +58,12 @@ export const NavBarSide = ({ user, role }) => {
               >
                 {dropdownMenuItems.map((item) => {
                   return (
-                    <li>
-                      <Link to={`/${role}/${item.page}/${user.id}`}>
-                        <a className="dropdown-item">{item.name}</a>
+                    <li key={item.id}>
+                      <Link
+                        to={`/${role}/${item.page}/${user.id}`}
+                        className="dropdown-item"
+                      >
+                        {item.name}
                       </Link>
                     </li>
                   );

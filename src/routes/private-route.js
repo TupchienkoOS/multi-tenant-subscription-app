@@ -5,26 +5,13 @@ import PageContainer from "../pages/page";
 import { NoMatch } from "../no-match";
 
 export const PrivateRoutes = ({ children, ...rest }) => {
-  const user = Cookies.get("user");
-  const company = Cookies.get("company");
-
-  const getRoutesFor = () => {
-    const loginAs = ["all"];
-    if (user) {
-      loginAs.push("user");
-    } else if (company) {
-      loginAs.push("company");
-    }
-    return ["user", "company", "all"];
-  };
-
   const isLogin = (role) => {
-    if (role === "user" && user) return true;
-    else if (role === "company" && company) return true;
+    if (role && Cookies.get([role])) return true;
     else return false;
     //Додати перевірку чи id компанії сбігається з id компанії яка залогінена
   };
   const role = rest.computedMatch.params.role;
+
   const privateRoutes = [
     {
       loginPath: `/${role}/login`,
@@ -35,11 +22,7 @@ export const PrivateRoutes = ({ children, ...rest }) => {
   ];
 
   const getRoutes = () => {
-    console.log("private routes");
-    const routes = privateRoutes.filter((route) =>
-      getRoutesFor().includes(role)
-    );
-    console.log(routes, "rotes");
+    const routes = privateRoutes;
     return routes;
   };
   return (

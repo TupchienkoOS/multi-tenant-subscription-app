@@ -40,7 +40,7 @@ export const NavBarTop = ({ onLogOut, notifications, messages, role }) => {
         <div className="navbar-header">
           <a
             className="navbar-minimalize minimalize-styl-2 btn btn-primary "
-            href="#"
+            href="#!"
             onClick={() => togleSideMenu()}
           >
             <i className="fa fa-bars"></i>{" "}
@@ -71,19 +71,15 @@ export const NavBarTop = ({ onLogOut, notifications, messages, role }) => {
             <a
               className="dropdown-toggle count-info"
               data-toggle="dropdown"
-              href="#"
+              href="#!"
             >
               <i className="fa fa-envelope"></i> {getNumberMessages()}
             </a>
             <ul className="dropdown-menu dropdown-messages">
               <li>
                 <div className="dropdown-messages-box">
-                  <a className="dropdown-item float-left" href="profile.html">
-                    <img
-                      alt="image"
-                      className="rounded-circle"
-                      src="./img/a7.jpg"
-                    ></img>
+                  <a className="dropdown-item float-left" href="#!">
+                    <img alt="" className="rounded-circle" src="./img/a7.jpg" />
                   </a>
                   <div className="media-body">
                     <small className="float-right">46h ago</small>
@@ -98,12 +94,8 @@ export const NavBarTop = ({ onLogOut, notifications, messages, role }) => {
               <li className="dropdown-divider"></li>
               <li>
                 <div className="dropdown-messages-box">
-                  <a className="dropdown-item float-left" href="profile.html">
-                    <img
-                      alt="image"
-                      className="rounded-circle"
-                      src="./img/a4.jpg"
-                    ></img>
+                  <a className="dropdown-item float-left" href="#!">
+                    <img alt="" className="rounded-circle" src="./img/a4.jpg" />
                   </a>
                   <div className="media-body ">
                     <small className="float-right text-navy">5h ago</small>
@@ -118,12 +110,12 @@ export const NavBarTop = ({ onLogOut, notifications, messages, role }) => {
               <li className="dropdown-divider"></li>
               <li>
                 <div className="dropdown-messages-box">
-                  <a className="dropdown-item float-left" href="profile.html">
+                  <a className="dropdown-item float-left" href="#!">
                     <img
-                      alt="image"
+                      alt={""}
                       className="rounded-circle"
                       src="./img/profile.jpg"
-                    ></img>
+                    />
                   </a>
                   <div className="media-body ">
                     <small className="float-right">23h ago</small>
@@ -150,7 +142,7 @@ export const NavBarTop = ({ onLogOut, notifications, messages, role }) => {
             <a
               className="dropdown-toggle count-info"
               data-toggle="dropdown"
-              href="#"
+              href="!#"
             >
               <i className="fa fa-bell"></i>{" "}
               {/* <span className="label label-primary"> */}
@@ -204,7 +196,7 @@ export const NavBarTop = ({ onLogOut, notifications, messages, role }) => {
           </li>
 
           <li>
-            <a onClick={() => onLogOut(role)}>
+            <a onClick={() => onLogOut(role)} href="#!">
               <i className="fa fa-sign-out"></i> Log out
             </a>
           </li>

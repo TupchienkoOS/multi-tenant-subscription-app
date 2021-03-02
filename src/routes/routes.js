@@ -20,7 +20,7 @@ class Routes extends React.Component {
     return (
       <Router basename="/multi-tenant-subscription-app">
         <Route exact path={"/"}>
-          <Redirect to={"/user"} />
+          <Redirect to={"/user/profile"} />
         </Route>
         <Switch>
           <PublicRoute exact path={["/:role/login", "/:role/login"]}>
